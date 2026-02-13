@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — Your Name</title>
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark">◆</span><span class="brand-text">Your Name</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/about/">About</a>
+        <a aria-current="page" href="/projects/">Projects</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container section-head">
+      <div>
+        <h1>Projects</h1>
+        <p class="muted">All projects are listed from <code>/data/projects.json</code>.</p>
+      </div>
+      <div class="section-actions">
+        <label class="field">
+          <span class="muted small">Filter</span>
+          <input id="project-filter" class="input" placeholder="Type a tag (e.g., web, python)..." />
+        </label>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="projects-grid" class="grid cards" aria-live="polite">
+        <div class="skeleton card" aria-hidden="true"></div>
+        <div class="skeleton card" aria-hidden="true"></div>
+        <div class="skeleton card" aria-hidden="true"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Your Name</p>
+      <nav class="nav" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/site.js" defer></script>
+  <script src="/js/projects.js" defer></script>
+</body>
+</html>
