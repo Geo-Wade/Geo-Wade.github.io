@@ -4,259 +4,192 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>Geoff Wade — GitHub Pages</title>
-  <meta name="description" content="GitHub Pages test site for verifying deployment." />
-  <style>
-    :root {
-      --bg: #0b1020;
-      --card: rgba(255, 255, 255, 0.08);
-      --text: rgba(255, 255, 255, 0.92);
-      --muted: rgba(255, 255, 255, 0.70);
-      --border: rgba(255, 255, 255, 0.16);
-      --accent: #6ea8fe;
-      --ok: #47d18c;
-      --shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
-    }
-
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f6f7fb;
-        --card: rgba(0, 0, 0, 0.03);
-        --text: rgba(0, 0, 0, 0.88);
-        --muted: rgba(0, 0, 0, 0.60);
-        --border: rgba(0, 0, 0, 0.10);
-        --accent: #2563eb;
-        --ok: #16a34a;
-        --shadow: 0 14px 40px rgba(0, 0, 0, 0.10);
-      }
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 20% 10%, rgba(110,168,254,0.35), transparent 55%),
-                  radial-gradient(1000px 500px at 80% 20%, rgba(71,209,140,0.25), transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 28px;
-    }
-
-    .wrap {
-      width: min(880px, 100%);
-      display: grid;
-      gap: 18px;
-    }
-
-    header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: grid;
-      gap: 6px;
-    }
-
-    h1 {
-      font-size: clamp(1.4rem, 1.2rem + 1.3vw, 2.1rem);
-      margin: 0;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: 999px;
-      box-shadow: var(--shadow);
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--ok);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 25%, transparent);
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-
-    .span-7 { grid-column: span 7; }
-    .span-5 { grid-column: span 5; }
-
-    @media (max-width: 760px) {
-      .span-7, .span-5 { grid-column: 1 / -1; }
-    }
-
-    .kv {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: color-mix(in srgb, var(--card) 65%, transparent);
-    }
-
-    .key { color: var(--muted); }
-    .value { font-variant-numeric: tabular-nums; }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover { text-decoration: underline; }
-
-    footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 0.9rem;
-      padding-top: 4px;
-    }
-
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.92em;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      user-select: none;
-    }
-    .btn:hover {
-      background: color-mix(in srgb, var(--card) 65%, transparent);
-    }
-  </style>
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Personal portfolio: projects, about, and contact." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/site.css" />
 </head>
 
 <body>
-  <main class="wrap">
-    <header>
-      <div class="brand">
-        <h1>GitHub Pages is Live</h1>
-        <p class="subtitle">This is a simple verification page served from <code>index.html</code>.</p>
-      </div>
-      <div class="pill" aria-label="Deployment status">
-        <span class="dot" aria-hidden="true"></span>
-        Deployed
-      </div>
-    </header>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <section class="grid">
-      <div class="card span-7">
-        <h2 style="margin:0 0 6px 0; font-size:1.1rem;">What you’re seeing</h2>
-        <p style="margin:0; color:var(--muted); line-height:1.5;">
-          If this page loads at your GitHub Pages URL, your repo’s Pages configuration is correct
-          and GitHub is serving your site.
-        </p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">◆</span>
+        <span class="brand-text">Your Name</span>
+      </a>
 
-        <div class="actions">
-          <button class="btn" id="copyUrl" type="button" title="Copy the current page URL">
-            Copy URL
-          </button>
-          <a class="btn" href="https://pages.github.com/" target="_blank" rel="noreferrer">
-            GitHub Pages Docs
-          </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/about/">About</a>
+        <a href="/projects/">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="https://github.com/YOUR_GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn-solid" href="/projects/">View Work</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Developer • Builder • Problem Solver</p>
+          <h1>Professional portfolio on GitHub Pages.</h1>
+          <p class="lead">
+            A clean, fast site to showcase projects with images, GIFs, and code snippets.
+            Built as a simple static site you can extend without a framework.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-solid" href="/projects/">See projects</a>
+            <a class="btn btn-ghost" href="/about/">About me</a>
+          </div>
+
+          <ul class="pill-row" aria-label="Highlights">
+            <li class="pill">Static + fast</li>
+            <li class="pill">Easy to add projects</li>
+            <li class="pill">Great for recruiters</li>
+          </ul>
+        </div>
+
+        <aside class="hero-card" aria-label="Quick profile">
+          <div class="profile">
+            <img class="avatar" src="/assets/img/headshot.jpg" alt="Your headshot" />
+            <div class="profile-meta">
+              <p class="profile-name">Your Name</p>
+              <p class="profile-title">Software Developer</p>
+              <p class="profile-loc">New York, USA</p>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <p class="stat-k">Focus</p>
+              <p class="stat-v">Web • Automation • Data</p>
+            </div>
+            <div class="stat">
+              <p class="stat-k">Stack</p>
+              <p class="stat-v">JS • HTML • CSS</p>
+            </div>
+            <div class="stat">
+              <p class="stat-k">Contact</p>
+              <p class="stat-v"><a href="#contact">Email / Links</a></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS (auto from JSON) -->
+    <section class="section">
+      <div class="container section-head">
+        <div>
+          <h2>Featured Projects</h2>
+          <p class="muted">These are pulled from <code>/data/projects.json</code>. Add a new entry and it appears here.</p>
+        </div>
+        <div class="section-actions">
+          <a class="btn btn-ghost" href="/projects/">All projects</a>
         </div>
       </div>
 
-      <div class="card span-5">
-        <h2 style="margin:0 0 6px 0; font-size:1.1rem;">Quick details</h2>
-        <div class="kv" role="list">
-          <div class="row" role="listitem">
-            <span class="key">Loaded at</span>
-            <span class="value" id="loadedAt">—</span>
-          </div>
-          <div class="row" role="listitem">
-            <span class="key">Path</span>
-            <span class="value" id="path">—</span>
-          </div>
-          <div class="row" role="listitem">
-            <span class="key">User agent</span>
-            <span class="value" id="ua">—</span>
-          </div>
+      <div class="container">
+        <div id="featured-projects" class="grid cards" aria-live="polite">
+          <!-- populated by /js/projects.js -->
+          <div class="skeleton card" aria-hidden="true"></div>
+          <div class="skeleton card" aria-hidden="true"></div>
+          <div class="skeleton card" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
-    <footer>
-      <span>© <span id="year"></span> Geoff Wade</span>
-      <span>Replace this with your portfolio when ready.</span>
-    </footer>
+    <!-- ABOUT PREVIEW + CAROUSEL TEASER -->
+    <section class="section alt">
+      <div class="container two-col">
+        <div>
+          <h2>About</h2>
+          <p class="muted">
+            Short bio goes here. Keep it tight: what you build, what you care about, and what you’re aiming for.
+          </p>
+          <ul class="bullets">
+            <li>What you’re great at (1)</li>
+            <li>What you’re great at (2)</li>
+            <li>What you’re learning next</li>
+          </ul>
+          <a class="btn btn-solid" href="/about/">Read more</a>
+        </div>
+
+        <div class="card carousel-teaser">
+          <div class="carousel" data-carousel>
+            <div class="carousel-track" data-carousel-track>
+              <figure class="carousel-slide">
+                <img src="/assets/img/life/01.jpg" alt="Life photo 1" />
+              </figure>
+              <figure class="carousel-slide">
+                <img src="/assets/img/life/02.jpg" alt="Life photo 2" />
+              </figure>
+              <figure class="carousel-slide">
+                <img src="/assets/img/life/03.jpg" alt="Life photo 3" />
+              </figure>
+            </div>
+            <div class="carousel-controls">
+              <button class="btn btn-ghost" type="button" data-carousel-prev aria-label="Previous image">Prev</button>
+              <button class="btn btn-ghost" type="button" data-carousel-next aria-label="Next image">Next</button>
+            </div>
+          </div>
+          <p class="muted small">This carousel is the same component used on the About page.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container section-head">
+        <div>
+          <h2>Contact</h2>
+          <p class="muted">Put real links here when you’re ready.</p>
+        </div>
+      </div>
+
+      <div class="container grid contact-cards">
+        <a class="card link-card" href="mailto:you@example.com">
+          <p class="kicker">Email</p>
+          <p class="big">you@example.com</p>
+          <p class="muted small">Best for opportunities and collaborations.</p>
+        </a>
+
+        <a class="card link-card" href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noreferrer">
+          <p class="kicker">LinkedIn</p>
+          <p class="big">/in/YOUR_LINKEDIN</p>
+          <p class="muted small">Professional background and experience.</p>
+        </a>
+
+        <a class="card link-card" href="https://github.com/YOUR_GITHUB" target="_blank" rel="noreferrer">
+          <p class="kicker">GitHub</p>
+          <p class="big">@YOUR_GITHUB</p>
+          <p class="muted small">Repos, code samples, and activity.</p>
+        </a>
+      </div>
+    </section>
   </main>
 
-  <script>
-    // Fill in simple runtime info to prove the page is actually executing in the browser.
-    const now = new Date();
-    document.getElementById("loadedAt").textContent = now.toLocaleString();
-    document.getElementById("path").textContent = window.location.pathname;
-    document.getElementById("ua").textContent = navigator.userAgent.slice(0, 28) + "…";
-    document.getElementById("year").textContent = String(now.getFullYear());
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Your Name</p>
+      <nav class="nav" aria-label="Footer">
+        <a href="/about/">About</a>
+        <a href="/projects/">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
 
-    document.getElementById("copyUrl").addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        alert("URL copied to clipboard.");
-      } catch {
-        prompt("Copy this URL:", window.location.href);
-      }
-    });
-  </script>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/projects.js" defer></script>
+  <script src="/js/carousel.js" defer></script>
 </body>
 </html>
