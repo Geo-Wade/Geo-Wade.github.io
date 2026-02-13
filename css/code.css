@@ -1,0 +1,10 @@
+.code {
+  margin: 0;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 75%, transparent);
+  overflow: auto;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
