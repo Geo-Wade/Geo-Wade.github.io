@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Geoff Wade — GitHub Pages</title>
+  <meta name="description" content="GitHub Pages test site for verifying deployment." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255, 255, 255, 0.08);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.70);
+      --border: rgba(255, 255, 255, 0.16);
+      --accent: #6ea8fe;
+      --ok: #47d18c;
+      --shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f7fb;
+        --card: rgba(0, 0, 0, 0.03);
+        --text: rgba(0, 0, 0, 0.88);
+        --muted: rgba(0, 0, 0, 0.60);
+        --border: rgba(0, 0, 0, 0.10);
+        --accent: #2563eb;
+        --ok: #16a34a;
+        --shadow: 0 14px 40px rgba(0, 0, 0, 0.10);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(110,168,254,0.35), transparent 55%),
+                  radial-gradient(1000px 500px at 80% 20%, rgba(71,209,140,0.25), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .wrap {
+      width: min(880px, 100%);
+      display: grid;
+      gap: 18px;
+    }
+
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: grid;
+      gap: 6px;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 1.2rem + 1.3vw, 2.1rem);
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--ok);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 25%, transparent);
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+
+    @media (max-width: 760px) {
+      .span-7, .span-5 { grid-column: 1 / -1; }
+    }
+
+    .kv {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--card) 65%, transparent);
+    }
+
+    .key { color: var(--muted); }
+    .value { font-variant-numeric: tabular-nums; }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding-top: 4px;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.92em;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn:hover {
+      background: color-mix(in srgb, var(--card) 65%, transparent);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <header>
+      <div class="brand">
+        <h1>GitHub Pages is Live</h1>
+        <p class="subtitle">This is a simple verification page served from <code>index.html</code>.</p>
+      </div>
+      <div class="pill" aria-label="Deployment status">
+        <span class="dot" aria-hidden="true"></span>
+        Deployed
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="card span-7">
+        <h2 style="margin:0 0 6px 0; font-size:1.1rem;">What you’re seeing</h2>
+        <p style="margin:0; color:var(--muted); line-height:1.5;">
+          If this page loads at your GitHub Pages URL, your repo’s Pages configuration is correct
+          and GitHub is serving your site.
+        </p>
+
+        <div class="actions">
+          <button class="btn" id="copyUrl" type="button" title="Copy the current page URL">
+            Copy URL
+          </button>
+          <a class="btn" href="https://pages.github.com/" target="_blank" rel="noreferrer">
+            GitHub Pages Docs
+          </a>
+        </div>
+      </div>
+
+      <div class="card span-5">
+        <h2 style="margin:0 0 6px 0; font-size:1.1rem;">Quick details</h2>
+        <div class="kv" role="list">
+          <div class="row" role="listitem">
+            <span class="key">Loaded at</span>
+            <span class="value" id="loadedAt">—</span>
+          </div>
+          <div class="row" role="listitem">
+            <span class="key">Path</span>
+            <span class="value" id="path">—</span>
+          </div>
+          <div class="row" role="listitem">
+            <span class="key">User agent</span>
+            <span class="value" id="ua">—</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Geoff Wade</span>
+      <span>Replace this with your portfolio when ready.</span>
+    </footer>
+  </main>
+
+  <script>
+    // Fill in simple runtime info to prove the page is actually executing in the browser.
+    const now = new Date();
+    document.getElementById("loadedAt").textContent = now.toLocaleString();
+    document.getElementById("path").textContent = window.location.pathname;
+    document.getElementById("ua").textContent = navigator.userAgent.slice(0, 28) + "…";
+    document.getElementById("year").textContent = String(now.getFullYear());
+
+    document.getElementById("copyUrl").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        alert("URL copied to clipboard.");
+      } catch {
+        prompt("Copy this URL:", window.location.href);
+      }
+    });
+  </script>
+</body>
+</html>
