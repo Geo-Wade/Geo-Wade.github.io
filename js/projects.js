@@ -1,5 +1,5 @@
 (async () => {
-  const featuredEl = document.getElementById("fuel-management");
+  const featuredEl = document.getElementById("featured-projects");
   const gridEl = document.getElementById("projects-grid");
   const filterEl = document.getElementById("project-filter");
 
