@@ -5,10 +5,11 @@
 
   let data;
   try {
-    const res = await fetch("/data/projects.json", { cache: "no-store" });
+    const res = await fetch("data/projects.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     data = await res.json();
   } catch (e) {
-    const msg = `<div class="card"><p class="muted">Could not load /data/projects.json</p></div>`;
+    const msg = `<div class="card"><p class="muted">Could not load data/projects.json (${String(e)})</p></div>`;
     if (featuredEl) featuredEl.innerHTML = msg;
     if (gridEl) gridEl.innerHTML = msg;
     return;
