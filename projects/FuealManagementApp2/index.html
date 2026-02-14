@@ -1,1 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fuel Management — Your Name</title>
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="stylesheet" href="/css/code.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark">◆</span><span class="brand-text">Your Name</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/about/">About</a>
+        <a href="/projects/">Projects</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
+  <main class="section">
+    <div class="container">
+      <p class="muted"><a href="/projects/">← Back to projects</a></p>
+
+      <div class="project-hero">
+        <div>
+          <h1>Fuel Management</h1>
+          <p class="muted">
+            1–2 sentence summary of what it does and why it matters.
+          </p>
+          <div class="project-links">
+            <a class="btn btn-solid" href="https://github.com/Geo-Wade/FuelManagementApp2" target="_blank" rel="noreferrer">Repo</a>
+            <a class="btn btn-ghost" href="#" target="_blank" rel="noreferrer">Live Demo</a>
+          </div>
+          <ul class="pill-row">
+            <li class="pill">tag: web</li>
+            <li class="pill">tag: api</li>
+            <li class="pill">tag: ui</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <img class="project-media" src="/projects/fuel-management/assets/hero.gif" alt="Project hero screenshot" />
+          <p class="muted small">Replace hero.png with a real screenshot.</p>
+        </div>
+      </div>
+
+      <section class="section tight">
+        <h2>Demo</h2>
+        <div class="card">
+          <img class="project-media" src="/projects/fuel-management/assets/demo.gif" alt="Animated demo of the project" />
+          <p class="muted small">GIFs work great here.</p>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <h2>Problem</h2>
+        <p class="muted">Describe the problem, constraints, and what “good” looks like.</p>
+      </section>
+
+      <section class="section tight">
+        <h2>Solution</h2>
+        <ul class="bullets">
+          <li>Key decision #1</li>
+          <li>Key decision #2</li>
+          <li>Key decision #3</li>
+        </ul>
+      </section>
+
+      <section class="section tight">
+        <h2>Code snippet</h2>
+        <div class="card">
+          <pre class="code"><code id="snippet-area">Loading snippet…</code></pre>
+          <p class="muted small">This can load from /snippets/… or be embedded inline.</p>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <h2>What I learned</h2>
+        <p class="muted">Recruiters love this section—keep it concrete.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Your Name</p>
+      <nav class="nav" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/about/">About</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/site.js" defer></script>
+  <script>
+    // Prototype snippet loader (points to a text file for now)
+    // You can remove this if you prefer inline code blocks.
+    fetch("/snippets/fuel-management/example.txt")
+      .then(r => r.ok ? r.text() : "Snippet not found.")
+      .then(t => { document.getElementById("snippet-area").textContent = t; })
+      .catch(() => { document.getElementById("snippet-area").textContent = "Snippet not found."; });
+  </script>
+</body>
+</html>
