@@ -1,5 +1,6 @@
 {
   "featured": ["sample-project"],
+  "projects" [
     {
     "id": "fuel-management",
       "title": "FuelManagement",
