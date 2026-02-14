@@ -10,5 +10,13 @@
       "repo": "https://github.com/YOUR_GITHUB/sample-project",
       "heroImage": "/projects/sample-project/assets/hero.png"
     }
+    {
+    "id": "fuel-management",
+      "title": "FuelManagement",
+      "summary": "A CLI application to simulate fueling operations",
+      "tags": ["Java", "SpringBoot", "DataJPA"],
+      "href": "/projects/fuel-management/",
+      "repo": "https://github.com/Geo-Wade/FuelManagementApp2",
+      "heroImage": "/projects/fuel-management/assets/hero.gif"
   ]
 }
