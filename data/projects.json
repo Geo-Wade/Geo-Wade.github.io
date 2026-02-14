@@ -1,15 +1,5 @@
 {
   "featured": ["sample-project"],
-  "projects": [
-    {
-      "id": "sample-project",
-      "title": "Sample Project",
-      "summary": "A short description of what this project does and why it matters.",
-      "tags": ["web", "ui", "api"],
-      "href": "/projects/sample-project/",
-      "repo": "https://github.com/YOUR_GITHUB/sample-project",
-      "heroImage": "/projects/sample-project/assets/hero.png"
-    },
     {
     "id": "fuel-management",
       "title": "FuelManagement",
