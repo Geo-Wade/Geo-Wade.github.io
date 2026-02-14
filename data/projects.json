@@ -1,6 +1,6 @@
 {
   "featured": ["fuel-management"],
-  "projects" [
+  "projects": [
     {
     "id": "fuel-management",
       "title": "FuelManagement",
