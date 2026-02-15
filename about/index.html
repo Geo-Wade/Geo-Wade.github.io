@@ -52,14 +52,24 @@ If you’re here to see what I’ve built, head over to my Projects page—each 
       <div class="card">
         <h2>Life highlights</h2>
         <div class="carousel" data-carousel>
+          <div class="carousel-viewport">
           <div class="carousel-track" data-carousel-track>
-            <figure class="carousel-slide"><img src="../assets/img/life/01.png" alt="Life photo 1" /></figure>
-            <figure class="carousel-slide"><img src="../assets/img/life/02.png" alt="Life photo 2" /></figure>
-            <figure class="carousel-slide"><img src="../assets/img/life/03.png" alt="Life photo 3" /></figure>
+            <figure class="carousel-slide">
+            <img src="/assets/img/life/01.png" alt="Life photo 1" />
+            </figure>
+            <figure class="carousel-slide">
+            <img src="/assets/img/life/02.png" alt="Life photo 2" />
+            </figure>
+            <figure class="carousel-slide">
+            <img src="/assets/img/life/03.png" alt="Life photo 3" />
+            </figure>
+            <!-- add 04 when ready -->
           </div>
-          <div class="carousel-controls">
-            <button class="btn btn-ghost" type="button" data-carousel-prev>Prev</button>
-            <button class="btn btn-ghost" type="button" data-carousel-next>Next</button>
+        </div>
+
+  <div class="carousel-controls">
+    <button class="btn btn-ghost" type="button" data-carousel-prev aria-label="Previous image">Prev</button>
+    <button class="btn btn-ghost" type="button" data-carousel-next aria-label="Next image">Next</button>
           </div>
         </div>
         <p class="muted small">Replace these with real photos. Keep them web-sized (e.g., 1600px wide max).</p>
