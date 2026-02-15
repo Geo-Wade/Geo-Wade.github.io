@@ -5,7 +5,7 @@
 
   let data;
   try {
-    const res = await fetch("data/projects.json", { cache: "no-store" });
+    const res = await fetch("../data/projects.json", { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     data = await res.json();
   } catch (e) {
