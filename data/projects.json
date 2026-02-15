@@ -9,6 +9,15 @@
       "href": "/projects/fuel-management/",
       "repo": "https://github.com/Geo-Wade/FuelManagementApp2",
       "heroImage": "/projects/fuel-management/assets/hero.png"
+    },
+    {
+    "id": "IntComBasMMO",
+      "title": "IntComBasMMO",
+      "summary": "Resource Gathering and Crafting Mechianics Built in Unreal Engine 4",
+      "tags": ["UE4", "C++", "Network"],
+      "href": "/projects/IntComBasMMO/",
+      "repo": "https://github.com/Geo-Wade/IntComBasMMO",
+      "heroImage": "/projects/IntComBasMMO/assets/hero.png"
     }
   ]
 }
