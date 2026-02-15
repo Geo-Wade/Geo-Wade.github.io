@@ -99,15 +99,5 @@
       </nav>
     </div>
   </footer>
-
-  <script src="/js/site.js" defer></script>
-  <script>
-    // Prototype snippet loader (points to a text file for now)
-    // You can remove this if you prefer inline code blocks.
-    fetch("/snippets/fuel-management/example.txt")
-      .then(r => r.ok ? r.text() : "Snippet not found.")
-      .then(t => { document.getElementById("snippet-area").textContent = t; })
-      .catch(() => { document.getElementById("snippet-area").textContent = "Snippet not found."; });
-  </script>
 </body>
 </html>
