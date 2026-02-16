@@ -4,6 +4,10 @@
    - Fix: project card buttons align to bottom (no HTML changes)
 */
 
+html{
+  scrollbar-gutter: stable;
+}
+
 :root{
   /* Brand palette */
   --lavender-ink: #8E83C9;
