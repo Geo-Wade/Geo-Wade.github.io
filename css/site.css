@@ -1,33 +1,50 @@
-/* /css/site.css — Modern “Liquid Glass” (UE: iCloud-ish, but more editorial)
+/* /css/site.css — Modern “Liquid Glass” (Earthy: Lavender + Dark Forest + Burnt Orange)
    - Mature, punchy, less “template”
    - Keeps your existing class names (hero, cards, nav, section, etc.)
    - No framework required
 */
 
 :root{
-  /* Core palette */
-  --bg0:#060812;
-  --bg1:#070b16;
-  --bg2:#0b1022;
+  /* =========
+     Brand palette (from your riding colors)
+     ========= */
+  --lavender: #B7A1FF;      /* soft, modern lavender */
+  --forest:   #0F2B1D;      /* dark forest green */
+  --ember:    #C66A2B;      /* burnt orange */
+  --sage:     #8FAE9A;      /* supporting neutral-green for subtle accents */
 
-  --text: rgba(255,255,255,.92);
+  /* =========
+     Core surface palette (dark)
+     ========= */
+  --bg0:#05070A;
+  --bg1:#070B0E;
+  --bg2:#0A1012;
+
+  --text:  rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.64);
 
   /* Glass system */
-  --glass-0: rgba(255,255,255,.06);
-  --glass-1: rgba(255,255,255,.10);
+  --glass-0: rgba(255,255,255,.055);
+  --glass-1: rgba(255,255,255,.095);
   --glass-2: rgba(255,255,255,.14);
-  --stroke:  rgba(255,255,255,.18);
+  --stroke:  rgba(255,255,255,.17);
 
-  /* Accent (controlled, not neon) */
-  --accent:  #0A84FF;
-  --accent2: #5AC8FA;
-  --ok:      #34C759;
+  /* Accents (primary/secondary/heat)
+     - Lavender is your “hero” accent
+     - Forest is structural (focus rings, subtle tints)
+     - Ember is for CTAs / highlights
+  */
+  --accent:   var(--lavender);
+  --accent2:  color-mix(in srgb, var(--sage) 70%, var(--lavender)); /* calm green-lavender */
+  --hot:      var(--ember);
+
+  /* Status */
+  --ok:       #34C759;
 
   /* Depth */
   --shadow-1: 0 10px 24px rgba(0,0,0,.38);
-  --shadow-2: 0 18px 48px rgba(0,0,0,.50);
-  --shadow-3: 0 34px 110px rgba(0,0,0,.62);
+  --shadow-2: 0 18px 48px rgba(0,0,0,.52);
+  --shadow-3: 0 34px 110px rgba(0,0,0,.66);
 
   /* Radius */
   --r1: 14px;
@@ -46,20 +63,20 @@
   --pad: 20px;
 }
 
-/* Light mode: crisp, still glassy */
+/* Light mode: crisp, still glassy, with earthy tint */
 @media (prefers-color-scheme: light){
   :root{
-    --bg0:#f4f6f9;
-    --bg1:#ffffff;
-    --bg2:#ffffff;
+    --bg0:#F5F4F1;  /* warm paper */
+    --bg1:#FFFFFF;
+    --bg2:#FFFFFF;
 
-    --text: rgba(0,0,0,.88);
-    --muted: rgba(0,0,0,.60);
+    --text: rgba(10,16,18,.90);
+    --muted: rgba(10,16,18,.60);
 
-    --glass-0: rgba(255,255,255,.55);
-    --glass-1: rgba(255,255,255,.78);
-    --glass-2: rgba(255,255,255,.92);
-    --stroke:  rgba(0,0,0,.08);
+    --glass-0: rgba(255,255,255,.62);
+    --glass-1: rgba(255,255,255,.82);
+    --glass-2: rgba(255,255,255,.94);
+    --stroke:  rgba(10,16,18,.09);
 
     --shadow-1: 0 10px 22px rgba(0,0,0,.10);
     --shadow-2: 0 18px 44px rgba(0,0,0,.12);
@@ -69,6 +86,7 @@
 
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
+
 body{
   font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Display", "SF Pro Text",
                "Segoe UI", Roboto, Helvetica, Arial;
@@ -78,18 +96,21 @@ body{
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
-  /* Cleaner “field” — fewer blobs, more intent */
+  /* Earthy “field”: lavender top-left, ember top-right, forest bottom */
   background:
-    radial-gradient(1100px 680px at 18% 12%,
-      color-mix(in srgb, var(--accent) 18%, transparent), transparent 62%),
-    radial-gradient(900px 560px at 86% 14%,
-      color-mix(in srgb, var(--accent2) 14%, transparent), transparent 62%),
-    radial-gradient(1200px 700px at 50% 110%,
-      rgba(255,255,255,.05), transparent 62%),
+    radial-gradient(1100px 680px at 16% 10%,
+      color-mix(in srgb, var(--accent) 20%, transparent), transparent 62%),
+    radial-gradient(900px 560px at 88% 14%,
+      color-mix(in srgb, var(--hot) 16%, transparent), transparent 64%),
+    radial-gradient(1200px 720px at 50% 112%,
+      color-mix(in srgb, var(--forest) 38%, transparent), transparent 62%),
     linear-gradient(180deg, var(--bg0) 0%, var(--bg2) 100%);
 }
 
-a{ color: color-mix(in srgb, var(--accent2) 92%, white 8%); text-decoration:none; }
+a{
+  color: color-mix(in srgb, var(--accent) 80%, white 20%);
+  text-decoration:none;
+}
 a:hover{ text-decoration:underline; }
 
 code{
@@ -182,7 +203,7 @@ p{ margin:0 0 12px 0; }
     radial-gradient(10px 10px at 30% 28%, rgba(255,255,255,.35), transparent 60%),
     linear-gradient(135deg,
       color-mix(in srgb, var(--accent) 92%, black),
-      color-mix(in srgb, var(--accent2) 86%, black));
+      color-mix(in srgb, var(--hot) 78%, black));
   box-shadow: var(--shadow-1);
 }
 .brand-text{
@@ -190,7 +211,7 @@ p{ margin:0 0 12px 0; }
   letter-spacing: -0.015em;
 }
 
-/* Nav: less “pill menu”, more calm system */
+/* Nav */
 .nav{ display:flex; gap:6px; flex-wrap:wrap; }
 .nav a{
   color: var(--muted);
@@ -210,7 +231,7 @@ p{ margin:0 0 12px 0; }
   border: 1px solid color-mix(in srgb, var(--stroke) 85%, transparent);
 }
 
-/* Buttons: purposeful, not “UI kit” */
+/* Buttons */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -240,12 +261,15 @@ p{ margin:0 0 12px 0; }
   box-shadow: var(--shadow-1);
 }
 
+/* Primary CTA uses burnt orange + lavender edge — still “pro” */
 .btn-solid{
-  color: #04101a;
+  color: #120A06;
   border: none;
   background:
     radial-gradient(14px 14px at 30% 25%, rgba(255,255,255,.55), transparent 60%),
-    linear-gradient(135deg, var(--accent), var(--accent2));
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--hot) 90%, white 10%),
+      color-mix(in srgb, var(--accent) 78%, white 22%));
   box-shadow: var(--shadow-2);
 }
 .btn-solid:hover{
@@ -253,14 +277,15 @@ p{ margin:0 0 12px 0; }
   box-shadow: var(--shadow-3);
 }
 
-/* Cards: less “template tile”, more product surface */
+/* Cards */
 .card{
   position: relative;
   padding: 20px;
   border-radius: var(--r3);
   border: 1px solid color-mix(in srgb, var(--stroke) 92%, transparent);
   background:
-    radial-gradient(760px 260px at 18% 0%, rgba(255,255,255,.13), transparent 60%),
+    radial-gradient(760px 260px at 18% 0%,
+      color-mix(in srgb, white 14%, transparent), transparent 60%),
     linear-gradient(180deg,
       color-mix(in srgb, var(--glass-0) 88%, transparent),
       color-mix(in srgb, var(--glass-0) 58%, transparent));
@@ -271,14 +296,15 @@ p{ margin:0 0 12px 0; }
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
-/* Subtle “edge” highlight, not glossy */
 .card::after{
   content:"";
   position:absolute;
   left: 12px; right:12px; top: 10px;
   height: 42%;
   border-radius: calc(var(--r3) - 12px);
-  background: linear-gradient(180deg, rgba(255,255,255,.12), transparent 68%);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--accent) 16%, white 10%),
+    transparent 68%);
   opacity: .55;
   pointer-events:none;
 }
@@ -286,12 +312,12 @@ p{ margin:0 0 12px 0; }
 .card:hover{
   transform: translateY(-3px);
   box-shadow: var(--shadow-3);
-  border-color: color-mix(in srgb, var(--accent2) 26%, var(--stroke));
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--stroke));
 }
 
 .link-card{ display:block; }
 
-/* Hero: more editorial, less “marketing block” */
+/* Hero */
 .hero{ padding: 96px 0 44px; }
 .hero-grid{
   display:grid;
@@ -329,7 +355,7 @@ p{ margin:0 0 12px 0; }
 }
 @media (max-width: 900px){ .two-col{ grid-template-columns: 1fr; } }
 
-/* Pills: calmer + more “tag” */
+/* Pills */
 .pill-row{
   display:flex; gap:10px; flex-wrap:wrap;
   list-style:none; padding:0; margin:0;
@@ -386,7 +412,7 @@ p{ margin:0 0 12px 0; }
   -webkit-backdrop-filter: blur(10px) saturate(140%);
 }
 .input:focus{
-  border-color: color-mix(in srgb, var(--accent) 52%, var(--stroke));
+  border-color: color-mix(in srgb, var(--forest) 55%, var(--stroke));
   box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
