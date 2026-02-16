@@ -1,5 +1,6 @@
-/* /css/site.css — Liquid Glass, but serious (Lavender + Forest + Ember, restrained)
-   - Masculine, editorial, less “glow”
+/* /css/site.css — “Cathedral Glass” Gothic (1800s engraving + velvet) but professional
+   - Gothic = vertical rhythm, sharp silhouettes, filigree, letterpress lines
+   - Still modern UX: readable, restrained, no Hot Topic angst
    - Keeps existing class names
    - No framework required
 */
@@ -16,37 +17,41 @@
   /* =========
      Core surfaces (dark, serious)
      ========= */
-  --bg0:#050708;
-  --bg1:#070A0C;
-  --bg2:#0B1012;
+  --bg0:#040506;
+  --bg1:#06090A;
+  --bg2:#0A0F10;
 
   --text:  rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.62);
 
-  /* Glass system (slightly drier) */
-  --glass-0: rgba(255,255,255,.045);
-  --glass-1: rgba(255,255,255,.075);
-  --glass-2: rgba(255,255,255,.11);
-  --stroke:  rgba(255,255,255,.14);
+  /* Glass system (drier, “lead came” edges) */
+  --glass-0: rgba(255,255,255,.035);
+  --glass-1: rgba(255,255,255,.060);
+  --glass-2: rgba(255,255,255,.095);
+
+  /* Stroke & “engraving” */
+  --stroke:   rgba(255,255,255,.13);
+  --stroke-2: rgba(255,255,255,.09);
+  --inkline:  color-mix(in srgb, var(--text) 18%, transparent);
 
   /* Accents (controlled) */
   --accent:  var(--lavender-ink); /* links + focus */
-  --accent2: color-mix(in srgb, var(--sage) 66%, var(--lavender-ink)); /* calm secondary */
+  --accent2: color-mix(in srgb, var(--sage) 68%, var(--lavender-ink));
   --hot:     var(--ember); /* CTAs only */
 
-  /* Depth (still premium, less glossy) */
-  --shadow-1: 0 10px 22px rgba(0,0,0,.42);
-  --shadow-2: 0 18px 44px rgba(0,0,0,.56);
-  --shadow-3: 0 34px 100px rgba(0,0,0,.70);
+  /* Depth (velvet + iron) */
+  --shadow-1: 0 10px 22px rgba(0,0,0,.46);
+  --shadow-2: 0 20px 56px rgba(0,0,0,.64);
+  --shadow-3: 0 44px 120px rgba(0,0,0,.78);
 
-  /* Radius */
-  --r1: 14px;
-  --r2: 18px;
-  --r3: 26px;
+  /* Radius (slightly sharper = more gothic) */
+  --r1: 12px;
+  --r2: 16px;
+  --r3: 22px;
 
   /* Type */
-  --h1: clamp(2.25rem, 1.3rem + 3.1vw, 3.75rem);
-  --h2: clamp(1.35rem, 1.05rem + 1.25vw, 2.05rem);
+  --h1: clamp(2.3rem, 1.2rem + 3.4vw, 4.05rem);
+  --h2: clamp(1.4rem, 1.05rem + 1.35vw, 2.15rem);
   --h3: 1.08rem;
   --lead: 1.08rem;
   --body: 1rem;
@@ -54,26 +59,38 @@
   /* Layout */
   --container: 1100px;
   --pad: 20px;
+
+  /* “Cathedral” motif knobs */
+  --filigree-a: color-mix(in srgb, var(--accent) 16%, transparent);
+  --filigree-b: color-mix(in srgb, var(--forest-deep) 42%, transparent);
+  --filigree-c: color-mix(in srgb, var(--hot) 11%, transparent);
 }
 
-/* Light mode: still earthy, not “pastel” */
+/* Light mode: parchment + ink, not pastel */
 @media (prefers-color-scheme: light){
   :root{
-    --bg0:#F4F3EF;
+    --bg0:#F3F1EA;
     --bg1:#FFFFFF;
     --bg2:#FFFFFF;
 
-    --text: rgba(10,16,18,.90);
-    --muted: rgba(10,16,18,.60);
+    --text: rgba(12,16,18,.92);
+    --muted: rgba(12,16,18,.60);
 
-    --glass-0: rgba(255,255,255,.64);
-    --glass-1: rgba(255,255,255,.84);
-    --glass-2: rgba(255,255,255,.94);
-    --stroke:  rgba(10,16,18,.09);
+    --glass-0: rgba(255,255,255,.66);
+    --glass-1: rgba(255,255,255,.86);
+    --glass-2: rgba(255,255,255,.95);
+
+    --stroke:   rgba(12,16,18,.11);
+    --stroke-2: rgba(12,16,18,.08);
+    --inkline:  rgba(12,16,18,.10);
 
     --shadow-1: 0 10px 22px rgba(0,0,0,.10);
-    --shadow-2: 0 18px 44px rgba(0,0,0,.12);
-    --shadow-3: 0 30px 90px rgba(0,0,0,.14);
+    --shadow-2: 0 18px 44px rgba(0,0,0,.13);
+    --shadow-3: 0 30px 90px rgba(0,0,0,.16);
+
+    --filigree-a: color-mix(in srgb, var(--accent) 14%, transparent);
+    --filigree-b: color-mix(in srgb, var(--forest-deep) 16%, transparent);
+    --filigree-c: color-mix(in srgb, var(--hot) 10%, transparent);
   }
 }
 
@@ -85,27 +102,61 @@ body{
                "Segoe UI", Roboto, Helvetica, Arial;
   font-size: var(--body);
   color: var(--text);
-  line-height: 1.55;
+  line-height: 1.58;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
-  /* Background: minimal, disciplined */
+  /* Background: “vellum + cathedral shadow + engraving” */
   background:
-    radial-gradient(900px 560px at 18% 10%,
-      color-mix(in srgb, var(--accent) 9%, transparent), transparent 68%),
-    radial-gradient(800px 520px at 88% 14%,
-      color-mix(in srgb, var(--hot) 7%, transparent), transparent 70%),
-    radial-gradient(1200px 720px at 50% 112%,
-      color-mix(in srgb, var(--forest-deep) 42%, transparent), transparent 64%),
+    radial-gradient(1100px 760px at 18% 10%, var(--filigree-a), transparent 66%),
+    radial-gradient(920px 620px at 88% 14%, var(--filigree-c), transparent 72%),
+    radial-gradient(1400px 820px at 50% 112%, var(--filigree-b), transparent 64%),
     linear-gradient(180deg, var(--bg0) 0%, var(--bg2) 100%);
+  position: relative;
 }
 
+/* Subtle “engraving paper grain” (no images) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events:none;
+  opacity: .10;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(255,255,255,.035) 3px
+    ),
+    radial-gradient(900px 600px at 60% 30%, rgba(255,255,255,.03), transparent 70%);
+  mix-blend-mode: overlay;
+  filter: contrast(1.05);
+}
+
+/* A faint “letterpress” vignette */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 800px at 50% 40%, transparent 58%, rgba(0,0,0,.28) 100%);
+  opacity: .55;
+}
+
+/* Links: ink + underline like print */
 a{
-  color: color-mix(in srgb, var(--accent) 78%, white 22%);
-  text-decoration:none;
+  color: color-mix(in srgb, var(--accent) 76%, white 24%);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
-a:hover{ text-decoration:underline; }
+a:hover{
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 52%, transparent);
+}
 
+/* Code stays modern */
 code{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
   font-size: .95em;
@@ -116,8 +167,9 @@ h1,h2,h3{
   letter-spacing:-0.03em;
   line-height:1.12;
   margin:0 0 10px 0;
+  text-wrap: balance;
 }
-h1{ font-size:var(--h1); line-height:1.04; }
+h1{ font-size:var(--h1); line-height:1.03; }
 h2{ font-size:var(--h2); }
 h3{ font-size:var(--h3); letter-spacing:-0.02em; }
 p{ margin:0 0 12px 0; }
@@ -131,13 +183,27 @@ p{ margin:0 0 12px 0; }
 .section{ padding: 84px 0; }
 .section.tight{ padding: 42px 0; }
 
+/* Section alt: “plaque” with fine rules like a book */
 .section.alt{
-  background: linear-gradient(180deg,
-    color-mix(in srgb, var(--glass-0) 88%, transparent),
-    transparent 72%);
-  border-top: 1px solid color-mix(in srgb, var(--stroke) 70%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--stroke) 70%, transparent);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--glass-0) 86%, transparent),
+      transparent 70%);
+  border-top: 1px solid color-mix(in srgb, var(--stroke-2) 78%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--stroke-2) 78%, transparent);
+  position: relative;
 }
+.section.alt::before,
+.section.alt::after{
+  content:"";
+  position:absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--inkline), transparent);
+  opacity: .65;
+}
+.section.alt::before{ top: 10px; }
+.section.alt::after{ bottom: 10px; }
 
 .section-head{
   display:flex;
@@ -164,15 +230,26 @@ p{ margin:0 0 12px 0; }
 }
 .skip-link:focus{ left:10px; z-index:30; }
 
-/* Header */
+/* Header: “apothecary case” strip */
 .site-header{
   position: sticky;
   top:0;
   z-index:20;
-  backdrop-filter: blur(18px) saturate(135%);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
-  background: color-mix(in srgb, var(--glass-0) 80%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--stroke) 86%, transparent);
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--glass-0) 78%, transparent),
+      color-mix(in srgb, var(--glass-0) 62%, transparent));
+  border-bottom: 1px solid color-mix(in srgb, var(--stroke-2) 86%, transparent);
+}
+.site-header::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--inkline), transparent);
+  opacity: .55;
 }
 .header-inner{
   display:flex;
@@ -187,42 +264,54 @@ p{ margin:0 0 12px 0; }
   color: var(--text);
   text-decoration:none;
 }
+
+/* Brand mark: “stained glass lozenge” */
 .brand-mark{
   width: 28px; height: 28px;
-  border-radius: 12px;
+  border-radius: 10px;
   background:
-    radial-gradient(10px 10px at 30% 28%, rgba(255,255,255,.22), transparent 60%),
+    radial-gradient(12px 12px at 30% 28%, rgba(255,255,255,.18), transparent 62%),
     linear-gradient(135deg,
-      color-mix(in srgb, var(--forest-deep) 84%, black),
+      color-mix(in srgb, var(--forest-deep) 88%, black),
       color-mix(in srgb, var(--accent) 60%, black));
   box-shadow: var(--shadow-1);
+  border: 1px solid color-mix(in srgb, var(--stroke) 86%, transparent);
 }
 .brand-text{
-  font-weight: 780;
+  font-weight: 820;
   letter-spacing: -0.015em;
 }
 
-/* Nav */
+/* Nav: “chapel tabs” */
 .nav{ display:flex; gap:6px; flex-wrap:wrap; }
 .nav a{
   color: var(--muted);
   padding: 8px 10px;
   border-radius: 999px;
   transition: background-color .16s ease, color .16s ease, transform .16s ease;
+  position: relative;
 }
 .nav a:hover{
-  background: color-mix(in srgb, var(--glass-1) 62%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 60%, transparent);
   color: var(--text);
   text-decoration:none;
   transform: translateY(-1px);
 }
 .nav a[aria-current="page"]{
   color: var(--text);
-  background: color-mix(in srgb, var(--glass-1) 72%, transparent);
-  border: 1px solid color-mix(in srgb, var(--stroke) 86%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 88%, transparent);
+}
+.nav a[aria-current="page"]::after{
+  content:"";
+  position:absolute;
+  left: 16px; right: 16px; bottom: 6px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 55%, transparent), transparent);
+  opacity: .9;
 }
 
-/* Buttons */
+/* Buttons: “signet” */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -230,9 +319,9 @@ p{ margin:0 0 12px 0; }
   gap:8px;
   padding: 11px 14px;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 760;
   letter-spacing:-0.01em;
-  border: 1px solid color-mix(in srgb, var(--stroke) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 92%, transparent);
   color: var(--text);
   cursor:pointer;
   text-decoration:none;
@@ -248,18 +337,19 @@ p{ margin:0 0 12px 0; }
   -webkit-backdrop-filter: blur(12px) saturate(130%);
 }
 .btn-ghost:hover{
-  background: color-mix(in srgb, var(--glass-1) 72%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 70%, transparent);
   box-shadow: var(--shadow-1);
 }
 
-/* Solid CTA: ember, but not candy */
+/* Solid CTA: ember wax seal */
 .btn-solid{
-  color: rgba(255,255,255,.92);
+  color: rgba(255,255,255,.94);
   border: 1px solid color-mix(in srgb, var(--hot) 36%, var(--stroke));
   background:
+    radial-gradient(120px 60px at 30% 20%, rgba(255,255,255,.10), transparent 70%),
     linear-gradient(180deg,
-      color-mix(in srgb, var(--hot) 46%, #111 54%),
-      color-mix(in srgb, var(--hot) 34%, #0B0F12 66%));
+      color-mix(in srgb, var(--hot) 44%, #121 56%),
+      color-mix(in srgb, var(--hot) 32%, #0A0E10 68%));
   box-shadow: var(--shadow-2);
 }
 .btn-solid:hover{
@@ -267,18 +357,17 @@ p{ margin:0 0 12px 0; }
   box-shadow: var(--shadow-3);
 }
 
-/* Cards: less sheen, more “hardware” */
+/* Cards: “gothic plaque” (pointed arch corners, filigree top rule) */
 .card{
   position: relative;
   padding: 20px;
   border-radius: var(--r3);
-  border: 1px solid color-mix(in srgb, var(--stroke) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 92%, transparent);
   background:
-    radial-gradient(900px 300px at 15% 0%,
-      rgba(255,255,255,.085), transparent 60%),
+    radial-gradient(900px 320px at 15% 0%, rgba(255,255,255,.07), transparent 62%),
     linear-gradient(180deg,
       color-mix(in srgb, var(--glass-0) 92%, transparent),
-      color-mix(in srgb, var(--glass-0) 64%, transparent));
+      color-mix(in srgb, var(--glass-0) 62%, transparent));
   box-shadow: var(--shadow-2);
   overflow:hidden;
   backdrop-filter: blur(16px) saturate(140%);
@@ -286,22 +375,36 @@ p{ margin:0 0 12px 0; }
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
-/* Very subtle edge highlight (remove “gloss stripe”) */
+/* “Engraved” inner frame */
+.card::before{
+  content:"";
+  position:absolute;
+  inset: 10px;
+  border-radius: calc(var(--r3) - 10px);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 60%, transparent);
+  opacity: .55;
+  pointer-events:none;
+}
+
+/* Filigree top rule */
 .card::after{
   content:"";
   position:absolute;
-  left: 14px; right:14px; top: 12px;
-  height: 34%;
-  border-radius: calc(var(--r3) - 12px);
-  background: linear-gradient(180deg, rgba(255,255,255,.08), transparent 72%);
-  opacity: .45;
+  left: 16px; right:16px; top: 14px;
+  height: 1px;
+  background:
+    linear-gradient(90deg,
+      transparent,
+      color-mix(in srgb, var(--accent) 22%, var(--inkline)),
+      transparent);
+  opacity: .85;
   pointer-events:none;
 }
 
 .card:hover{
   transform: translateY(-3px);
   box-shadow: var(--shadow-3);
-  border-color: color-mix(in srgb, var(--accent) 18%, var(--stroke));
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--stroke-2));
 }
 
 .link-card{ display:block; }
@@ -323,9 +426,20 @@ p{ margin:0 0 12px 0; }
   margin:0 0 12px;
   color: var(--muted);
   font-size: .90rem;
-  letter-spacing: .12em;
+  letter-spacing: .16em; /* more “print” */
   text-transform: uppercase;
+  position: relative;
 }
+.eyebrow::after{
+  content:"";
+  display:block;
+  width: 68px;
+  height: 1px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, var(--inkline), transparent);
+  opacity: .75;
+}
+
 .hero h1{ margin: 0 0 14px; }
 .hero-cta{ display:flex; gap:10px; flex-wrap:wrap; margin: 14px 0 12px; }
 
@@ -344,45 +458,66 @@ p{ margin:0 0 12px 0; }
 }
 @media (max-width: 900px){ .two-col{ grid-template-columns: 1fr; } }
 
-/* Pills */
+/* Pills: “typesetter slugs” */
 .pill-row{
   display:flex; gap:10px; flex-wrap:wrap;
   list-style:none; padding:0; margin:0;
 }
 .pill{
-  border: 1px solid color-mix(in srgb, var(--stroke) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 86%, transparent);
   background: color-mix(in srgb, var(--glass-0) 92%, transparent);
   padding: 8px 10px;
   border-radius: 999px;
   color: var(--muted);
   font-size: .92rem;
+  position: relative;
+}
+.pill::before{
+  content:"";
+  position:absolute;
+  left: 10px; right: 10px; top: 6px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+  opacity: .35;
+  pointer-events:none;
 }
 
 /* Lists + bits */
 .bullets{ margin:12px 0 0; padding-left:18px; color: var(--muted); }
 .kicker{ margin:0; color: var(--muted); font-size:.9rem; }
-.big{ margin: 6px 0 0; font-weight: 760; font-size: 1.04rem; }
+.big{ margin: 6px 0 0; font-weight: 780; font-size: 1.04rem; }
 
 /* Profile */
 .profile{ display:flex; gap:12px; align-items:center; margin-bottom:12px; }
 .avatar{
   width: 74px; height: 74px;
   border-radius: var(--r2);
-  border: 1px solid color-mix(in srgb, var(--stroke) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 90%, transparent);
   object-fit: cover;
   box-shadow: var(--shadow-1);
+  filter: contrast(1.03) saturate(1.01);
 }
-.profile-name{ margin:0; font-weight: 820; }
+.profile-name{ margin:0; font-weight: 860; }
 .profile-title, .profile-loc{ margin:0; color: var(--muted); font-size:.95rem; }
 
-/* Stats */
+/* Stats: fine ruled rows */
 .stats{ display:grid; gap:10px; }
 .stat{
   display:flex; justify-content:space-between; gap:12px;
   padding: 10px 12px;
   border-radius: var(--r2);
-  border: 1px solid color-mix(in srgb, var(--stroke) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 86%, transparent);
   background: color-mix(in srgb, var(--glass-0) 92%, transparent);
+  position: relative;
+}
+.stat::after{
+  content:"";
+  position:absolute;
+  left: 12px; right: 12px; bottom: 9px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--inkline), transparent);
+  opacity: .22;
+  pointer-events:none;
 }
 .stat-k{ margin:0; color: var(--muted); }
 .stat-v{ margin:0; }
@@ -392,7 +527,7 @@ p{ margin:0 0 12px 0; }
 .input{
   padding: 11px 14px;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--stroke) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 90%, transparent);
   background: color-mix(in srgb, var(--glass-0) 92%, transparent);
   color: var(--text);
   min-width: 240px;
@@ -401,7 +536,7 @@ p{ margin:0 0 12px 0; }
   -webkit-backdrop-filter: blur(10px) saturate(130%);
 }
 .input:focus{
-  border-color: color-mix(in srgb, var(--accent) 44%, var(--stroke));
+  border-color: color-mix(in srgb, var(--accent) 44%, var(--stroke-2));
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
@@ -410,7 +545,7 @@ p{ margin:0 0 12px 0; }
 .carousel-viewport{
   overflow:hidden;
   border-radius: var(--r3);
-  border: 1px solid color-mix(in srgb, var(--stroke) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 90%, transparent);
   background: color-mix(in srgb, var(--glass-0) 86%, transparent);
 }
 .carousel-track{
@@ -425,7 +560,7 @@ p{ margin:0 0 12px 0; }
   height: 300px;
   object-fit: cover;
   display:block;
-  filter: saturate(1.01) contrast(1.02);
+  filter: saturate(1.01) contrast(1.04);
 }
 .carousel-controls{ display:flex; gap:10px; justify-content:flex-end; }
 
@@ -443,7 +578,7 @@ p{ margin:0 0 12px 0; }
   width:100%;
   height:auto;
   border-radius: var(--r3);
-  border: 1px solid color-mix(in srgb, var(--stroke) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 90%, transparent);
   display:block;
   box-shadow: var(--shadow-1);
 }
@@ -454,16 +589,25 @@ p{ margin:0 0 12px 0; }
   display:inline-block;
   min-width: 64px;
   color: var(--text);
-  font-weight: 800;
+  font-weight: 860;
 }
 
 /* Footer */
 .site-footer{
-  border-top: 1px solid color-mix(in srgb, var(--stroke) 76%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--stroke-2) 76%, transparent);
   padding: 26px 0;
   background: color-mix(in srgb, var(--glass-0) 70%, transparent);
   backdrop-filter: blur(14px) saturate(130%);
   -webkit-backdrop-filter: blur(14px) saturate(130%);
+  position: relative;
+}
+.site-footer::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--inkline), transparent);
+  opacity: .55;
 }
 .footer-inner{
   display:flex; justify-content:space-between; align-items:center;
@@ -474,12 +618,12 @@ p{ margin:0 0 12px 0; }
 .skeleton{
   min-height: 150px;
   border-radius: var(--r3);
-  border: 1px solid color-mix(in srgb, var(--stroke) 68%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke-2) 68%, transparent);
   background:
     linear-gradient(90deg,
-      color-mix(in srgb, var(--glass-0) 72%, transparent),
-      color-mix(in srgb, var(--glass-1) 76%, transparent),
-      color-mix(in srgb, var(--glass-0) 72%, transparent));
+      color-mix(in srgb, var(--glass-0) 70%, transparent),
+      color-mix(in srgb, var(--glass-1) 74%, transparent),
+      color-mix(in srgb, var(--glass-0) 70%, transparent));
   background-size: 200% 100%;
   animation: shimmer 1.15s ease-in-out infinite;
 }
