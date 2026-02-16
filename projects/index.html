@@ -4,10 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>Projects — Geoff Wade</title>
-  <meta name="description" content="Projects by Geoff Wade — Java, C++, Unreal Engine, and more." />
+  <title>Fuel Management — Geoff Wade</title>
+  <meta name="description" content="Fuel Management — Java/Spring Boot CLI project by Geoff Wade." />
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/css/site.css" />
+  <link rel="stylesheet" href="/css/code.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-okaidia.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-java.min.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -25,32 +30,105 @@
 
       <div class="header-actions">
         <a class="btn btn-ghost" href="https://github.com/Geo-Wade" target="_blank" rel="noreferrer">GitHub</a>
-        <a class="btn btn-solid" href="/#contact">Contact</a>
+        <a class="btn btn-solid" href="/projects/">All Projects</a>
       </div>
     </div>
   </header>
 
   <main id="main" class="section">
-    <div class="container section-head">
-      <div>
-        <h1>Projects</h1>
-        <p class="muted">Selected builds and technical write-ups.</p>
-      </div>
-
-      <div class="section-actions">
-        <label class="field">
-          <span class="muted small">Filter (title or tag)</span>
-          <input id="project-filter" class="input" type="text" placeholder="e.g., Java, Spring, UE4" autocomplete="off" />
-        </label>
-      </div>
-    </div>
-
     <div class="container">
-      <div id="projects-grid" class="grid cards" aria-live="polite">
-        <div class="skeleton card" aria-hidden="true"></div>
-        <div class="skeleton card" aria-hidden="true"></div>
-        <div class="skeleton card" aria-hidden="true"></div>
+      <p class="muted"><a href="/projects/">← Back to projects</a></p>
+
+      <div class="project-hero">
+        <div>
+          <h1>Fuel Management</h1>
+          <p class="muted">
+            A Java/Spring Boot CLI app with authentication/authorization backed by an H2 database, plus a concurrent fueling thread that simulates fueling operations.
+          </p>
+          <div class="project-links">
+            <a class="btn btn-solid" href="https://github.com/Geo-Wade/FuelManagementApp2" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul class="pill-row">
+            <li class="pill">Java</li>
+            <li class="pill">Spring Boot</li>
+            <li class="pill">Concurrency</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <img class="project-media" src="/projects/fuel-management/assets/hero.png" alt="Fuel Management project screenshot" />
+        </div>
       </div>
+
+      <section class="section tight">
+        <h2>Demo</h2>
+        <div class="card">
+          <img class="project-media" src="/projects/fuel-management/assets/demo.gif" alt="Animated demo of Fuel Management" />
+        </div>
+      </section>
+
+      <section class="section tight">
+        <h2>Problem</h2>
+        <p class="muted">
+          Reacquaint myself with Java by building a small application end-to-end while practicing core OOP principles and making architectural decisions.
+          A key goal was to structure a maintainable codebase and persist data reliably instead of relying on in-memory state.
+        </p>
+      </section>
+
+      <section class="section tight">
+        <h2>Solution</h2>
+        <ul class="bullets">
+          <li>Used a layered architecture (Controller | Service | Repository)</li>
+          <li>Applied dependency injection with Spring Boot</li>
+          <li>Chose persistence over in-memory state</li>
+        </ul>
+      </section>
+
+      <section class="section tight">
+        <h2>Code snippet</h2>
+        <div class="card">
+          <pre class="code"><code id="snippet-area" class="language-java">// This method returns the Fueling Positions that are actively fueling from a table in the database.
+@Override
+public List&lt;Integer&gt; getActiveFuelingPositionById() {
+  return activeTransactionRepo.findAll().stream()
+    .map(ActiveTransaction::getFuelingPosition)
+    .toList();
+}
+
+// This method returns fueling positions that are not currently active, and are available to the equipment whose number has been entered.
+@Override
+public List&lt;Integer&gt; getInactiveFuelingPositionById(int trId) {
+  System.out.println();
+  try {
+    return fuelingPositionRepo
+      .findAll()
+      .stream()
+      .filter(pr -> startupTransactionRepo.findById(trId).orElseThrow().getEquipmentId().getProducts().stream()
+        .map(Product::getProductName)
+        .anyMatch(pr2 -> pr.getProduct().getProductName().equals(pr2)))
+      .map(FuelingPosition::getFuelingPositionNumber)
+      .filter(Predicate.not(hoseN -> activeTransactionRepo.findAll().stream()
+        .map(ActiveTransaction::getTransactions)
+        .map(Transaction::getFuelingPosition)
+        .anyMatch(x -> x.equals(hoseN))))
+      .toList();
+  } catch (Exception e) {
+    System.out.println(e);
+    return List.of();
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <h2>What I learned</h2>
+        <p class="muted">
+          Coming from mostly C++, this project helped me reacclimate to Java while practicing how to structure an application end-to-end.
+          I rewrote it twice: first to eliminate circular dependencies by tightening responsibilities between layers, and again to rebuild it
+          with Spring Boot’s DI and repository patterns. The biggest takeaway was designing around persistence and clear boundaries instead of
+          relying on in-memory state—while also getting hands-on experience with concurrency in a real workflow.
+        </p>
+      </section>
     </div>
   </main>
 
@@ -60,12 +138,12 @@
       <nav class="nav" aria-label="Footer">
         <a href="/">Home</a>
         <a href="/about/">About</a>
+        <a href="/projects/">Projects</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>
   </footer>
 
   <script src="/js/site.js" defer></script>
-  <script src="/js/projects.js" defer></script>
 </body>
 </html>
