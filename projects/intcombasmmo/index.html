@@ -188,16 +188,16 @@
       <section class="section tight">
         <h2>Problem</h2>
         <p class="muted">
-          Design a scalable tool-to-resource interaction model that supports many resource types and tool variants, while keeping the logic maintainable in Blueprints.
+          To create a robust and scalable crafting mechanic. It must verify that required materials are present, spawn the crafted items for the player.   
         </p>
       </section>
 
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
-          <li>Created a Resource base class (C++) with Blueprint children that define world representation and inventory representation</li>
-          <li>Created a Tool/Weapon base class with an allowlist of gatherable resource classes/types set in Blueprint</li>
-          <li>Implemented an Inventory Component on the local Player Controller; on successful gather, the resource actor is destroyed and deposits its item payload into inventory</li>
+          <li>Created a crafting station base class that can be inherited in blueprints.</li>
+          <li>Build a system of checking for valid matierals before spawning the crafted item</li>
+          <li>Established a system for inserting items into a players inventory that can be accessed by other actors in the world.</li>
         </ul>
       </section>
 
