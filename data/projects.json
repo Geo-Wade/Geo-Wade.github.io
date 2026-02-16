@@ -11,7 +11,7 @@
       "heroImage": "/projects/fuel-management/assets/hero.png"
     },
     {
-    "id": "IntComBasMMO",
+    "id": "intcombasmmo",
       "title": "IntComBasMMO",
       "summary": "Resource Gathering and Crafting Mechianics Built in Unreal Engine 4",
       "tags": ["UE4", "C++", "Network"],
