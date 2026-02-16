@@ -1,10 +1,22 @@
-.code {
+.code{
   margin: 0;
   padding: 14px;
   border-radius: 14px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--card) 75%, transparent);
+  border: 1px solid var(--border, var(--stroke));
+  background: color-mix(in srgb, var(--card, var(--glass-1)) 74%, transparent);
   overflow: auto;
-  line-height: 1.5;
+  line-height: 1.55;
   font-size: 0.95rem;
+}
+
+/* Make Prism feel “in-world” instead of pasted-on */
+pre.code{
+  backdrop-filter: blur(12px) saturate(135%);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  box-shadow: var(--shadow-1);
+}
+
+pre.code code{
+  display:block;
+  white-space: pre;
 }
