@@ -10,7 +10,8 @@
   <!-- Prism syntax highlighting (static-friendly) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-okaidia.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-java.min.js"></script>
+  <!-- C++ highlighting -->
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -32,7 +33,7 @@
         <div>
           <h1>IntConBasMMO</h1>
           <p class="muted">
-            A project where I built game mechanics for spawning and gathering resources, crafting, and basic game combat. 
+            A project where I built game mechanics for spawning and gathering resources, crafting, and basic game combat.
           </p>
           <div class="project-links">
             <a class="btn btn-solid" href="https://github.com/Geo-Wade/FuelManagementApp2" target="_blank" rel="noreferrer">Repo</a>
@@ -45,7 +46,7 @@
         </div>
 
         <div class="card">
-          <img class="project-media" src="assets/hero.png " alt="Project hero screenshot" />
+          <img class="project-media" src="assets/hero.png" alt="Project hero screenshot" />
         </div>
       </div>
 
@@ -58,16 +59,18 @@
 
       <section class="section tight">
         <h2>Problem</h2>
-        <p class="muted">For a game where a player can gather resources, a reliable and logical spawning of those resources is necessary, 
-          I needed to create that mechanic. </p>
+        <p class="muted">
+          For a game where a player can gather resources, a reliable and logical spawning of those resources is necessary.
+          I needed to create that mechanic.
+        </p>
       </section>
 
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
           <li>Created a volume within which resources will spawn at terrain level</li>
-          <li>Created a minimum distance between the resources </li>
-          <li>Persistence over state</li>
+          <li>Created a minimum distance between the resources</li>
+          <li>Added a capped retry loop to avoid infinite searches when the area is too crowded</li>
         </ul>
       </section>
 
@@ -75,35 +78,61 @@
         <h2>Code snippet</h2>
         <div class="card">
           <!-- IMPORTANT: keep code flush-left inside <code> to avoid extra indentation -->
-          <pre class="code"><code id="snippet-area" class="language-java">// This method returns the Fueling Positions that are actively fueling from a table in the database.
-@Override
-public List&lt;Integer&gt; getActiveFuelingPositionById() {
-  return activeTransactionRepo.findAll().stream()
-    .map(ActiveTransaction::getFuelingPosition)
-    .toList();
-}
+          <pre class="code"><code id="snippet-area" class="language-cpp">void AICBMResourceSpawner::FindLocationToSpawn(FVector* OutVector)
+{
+	int NumberOfTries = 0;
+	bool FoundViableLocation = false;
 
-// This method returns fueling positions that are not currently active, and are available to the equipment whose number has been entered.
-@Override
-public List&lt;Integer&gt; getInactiveFuelingPositionById(int trId) {
-  System.out.println();
-  try {
-    return fuelingPositionRepo
-      .findAll()
-      .stream()
-      .filter(pr -> startupTransactionRepo.findById(trId).orElseThrow().getEquipmentId().getProducts().stream()
-        .map(Product::getProductName)
-        .anyMatch(pr2 -> pr.getProduct().getProductName().equals(pr2)))
-      .map(FuelingPosition::getFuelingPositionNumber)
-      .filter(Predicate.not(hoseN -> activeTransactionRepo.findAll().stream()
-        .map(ActiveTransaction::getTransactions)
-        .map(Transaction::getFuelingPosition)
-        .anyMatch(x -> x.equals(hoseN))))
-      .toList();
-  } catch (Exception e) {
-    System.out.println(e);
-    return List.of();
-  }
+	do
+	{
+		UE_LOG(LogTemp, Warning, TEXT("trying..."))
+		FVector BoxExtent = SpawningVolume-&gt;GetScaledBoxExtent();
+		FVector BoxLocation = SpawningVolume-&gt;GetComponentLocation();
+		float MaxX = BoxLocation.X + BoxExtent.X;
+		float MinX = BoxLocation.X - BoxExtent.X;
+		float X = FMath::RandRange(MinX, MaxX);
+
+		float MaxY = BoxLocation.Y + BoxExtent.Y;
+		float MinY = BoxLocation.Y - BoxExtent.Y;
+		float Y = FMath::RandRange(MinY, MaxY);
+
+		FVector TraceStart = FVector(X, Y, BoxLocation.Z + BoxExtent.Z);
+		FVector TraceEnd = TraceStart;
+		TraceEnd.Z = BoxLocation.Z - BoxExtent.Z;
+
+		FHitResult Hit;
+		if (GetWorld()-&gt;LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility))
+		{
+			bool bValidClass = false;
+			for (FString ClassName : ViableSpawnClasses)
+			{
+				if (Hit.Actor-&gt;GetClass()-&gt;GetName() == ClassName)
+				{
+					bValidClass = true;
+				}
+			}
+
+			bool TooCloseToOtherResource = false;
+			for (AICBMResourceActor* ResourceActor : ResourceActorList)
+			{
+				float Distance = (ResourceActor-&gt;GetActorLocation() - Hit.ImpactPoint).Size();
+				if (Distance &lt; DistanceBetweenResources)
+				{
+					TooCloseToOtherResource = true;
+				}
+			}
+
+			if (!TooCloseToOtherResource &amp;&amp; bValidClass)
+			{
+				FoundViableLocation = true;
+				*OutVector = Hit.ImpactPoint;
+			}
+		}
+
+		NumberOfTries++;
+	} while (NumberOfTries &lt; 100 &amp;&amp; !FoundViableLocation);
+
+	OutVector = NULL;
 }</code></pre>
         </div>
       </section>
@@ -120,6 +149,7 @@ public List&lt;Integer&gt; getInactiveFuelingPositionById(int trId) {
       <p class="muted">© <span id="year"></span> Geoff Wade</p>
       <nav class="nav" aria-label="Footer">
         <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
         <a href="/projects/">Projects</a>
         <a href="/about/">About</a>
       </nav>
