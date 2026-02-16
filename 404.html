@@ -3,17 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
   <title>404 — Not Found</title>
+  <meta name="description" content="404 — page not found." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
-  <main class="section">
-    <div class="container card">
-      <h1>Page not found</h1>
-      <p class="muted">That route doesn’t exist. If you renamed a project folder, update its link in <code>/data/projects.json</code>.</p>
-      <a class="btn btn-solid" href="/">Go home</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <main id="main" class="section">
+    <div class="container">
+      <div class="card">
+        <h1>Page not found</h1>
+        <p class="muted">
+          That route doesn’t exist. If you renamed a project folder, update its link in <code>/data/projects.json</code>.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn btn-solid" href="/">Go home</a>
+          <a class="btn btn-ghost" href="/projects/">Projects</a>
+        </div>
+      </div>
     </div>
   </main>
+
   <script src="/js/site.js" defer></script>
 </body>
 </html>
