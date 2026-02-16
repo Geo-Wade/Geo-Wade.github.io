@@ -3,76 +3,90 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
   <title>About — Geoff Wade</title>
+  <meta name="description" content="About Geoff Wade — background, focus, and timeline." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="/"><span class="brand-mark">◆</span><span class="brand-text">Geoff Wade</span></a>
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">◆</span><span class="brand-text">Geoff Wade</span></a>
+
       <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
         <a aria-current="page" href="/about/">About</a>
         <a href="/projects/">Projects</a>
         <a href="/#contact">Contact</a>
       </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="https://github.com/Geo-Wade" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn-solid" href="/projects/">View Work</a>
+      </div>
     </div>
   </header>
 
-  <main class="section">
+  <main id="main" class="section">
     <div class="container two-col">
       <div>
         <h1>About me</h1>
+
         <p class="muted">
-          I’m a Product Support Specialist at Syntech Systems (FuelMaster), where I was promoted from Level 1 to Level 2 and work on resolving customer-impacting issues across both FuelMaster Live and Legacy. A lot of my day-to-day is technical debugging—SSH’ing into embedded Linux environments, tracing logs from OSGi services, identifying root causes, and coordinating escalations or migrations when the fix needs broader alignment. I care about outcomes as much as the details: I hit 105% of goal in my first year (2nd in the department) and maintain a 97.2% CSAT against a 95% target.
-
-I’m also actively moving toward product development because I genuinely enjoy building software. I’ve been developing a Java/Spring Boot portfolio application using a layered architecture with Spring Data JPA and an H2 database, and I’m currently building out the Angular front end. What I like most about programming is the mix of creativity and rigor—taking messy real-world requirements and turning them into something clear, testable, and maintainable.
-
-Outside of work, I’m an avid mountain biker, married, and a dad of two. I also spent six years as a stay-at-home parent, which sharpened my patience, prioritization, and ability to stay calm under pressure—skills that turned out to be surprisingly useful in technical support and project work. I’m into video games, comics, and reading, and I’m extremely curious by nature. I’m the kind of person who enjoys digging into the “why” behind things—whether that’s philosophy, science, or a deep technical problem—and I love conversations that go beyond the surface.
-
-If you’re here to see what I’ve built, head over to my Projects page—each one is a snapshot of what I’m learning, what I care about, and the direction I’m heading. 
+          I’m a Product Support Specialist at Syntech Systems (FuelMaster), promoted from Level 1 to Level 2. I resolve customer-impacting issues across
+          FuelMaster Live and Legacy—SSH into embedded Linux, trace logs through OSGi services, isolate root causes, and coordinate escalations and migrations
+          when fixes require broader alignment.
+        </p>
+        <p class="muted">
+          I care about outcomes and the details that produce them: I hit 105% of goal in my first year (2nd in the department) and maintain a 97.2% CSAT
+          against a 95% target.
+        </p>
+        <p class="muted">
+          I’m moving toward product development because I enjoy building software. I’ve been developing a Java/Spring Boot portfolio application using a layered
+          architecture with Spring Data JPA and an H2 database, and I’m building out an Angular front end. What I like most is turning messy real-world requirements
+          into something clear, testable, and maintainable.
+        </p>
+        <p class="muted">
+          Outside of work, I’m an avid mountain biker, married, and a dad of two. I also spent six years as a stay-at-home parent, which sharpened prioritization,
+          patience, and staying calm under pressure—skills that translate well into technical support and engineering work.
         </p>
 
         <h2>What I’m focused on</h2>
-          <ul class="bullets">
-            <li>Deepening my Java skills and core OOP principles</li>
-            <li>Incorporating frameworks like Spring Boot into my projects</li>
-            <li>Writing maintainable code that fits professional team workflows</li>
-          </ul>
+        <ul class="bullets">
+          <li>Deepening Java skills and core OOP principles</li>
+          <li>Building with frameworks like Spring Boot in real projects</li>
+          <li>Writing maintainable code that fits professional team workflows</li>
+        </ul>
 
         <h2>Quick timeline</h2>
         <div class="card">
-  <ul class="timeline">
-    <li><span class="t-year">2026</span> Goal: transition from Product Support to Product Development</li>
-    <li><span class="t-year">2025</span> Led cutovers for ~10 customers; executed firmware upgrades and payment-processor configuration changes ahead of the processor shutdown; achieved 97.2% CSAT</li>
-    <li><span class="t-year">2024</span> Ranked 2nd in the department in my first year, exceeding goals by 5% (105%)</li>
-  </ul>
-</div>
+          <ul class="timeline">
+            <li><span class="t-year">2026</span> Goal: transition from Product Support to Product Development</li>
+            <li><span class="t-year">2025</span> Led cutovers for ~10 customers; executed firmware upgrades and payment-processor configuration changes ahead of the processor shutdown; achieved 97.2% CSAT</li>
+            <li><span class="t-year">2024</span> Ranked 2nd in the department in my first year, exceeding goals by 5% (105%)</li>
+          </ul>
+        </div>
       </div>
 
       <div class="card">
         <h2>Life highlights</h2>
         <div class="carousel" data-carousel>
           <div class="carousel-viewport">
-          <div class="carousel-track" data-carousel-track>
-            <figure class="carousel-slide">
-            <img src="/assets/img/life/01.png" alt="Life photo 1" />
-            </figure>
-            <figure class="carousel-slide">
-            <img src="/assets/img/life/02.png" alt="Life photo 2" />
-            </figure>
-            <figure class="carousel-slide">
-            <img src="/assets/img/life/03.png" alt="Life photo 3" />
-            </figure>
-            <!-- add 04 when ready -->
+            <div class="carousel-track" data-carousel-track>
+              <figure class="carousel-slide"><img src="/assets/img/life/01.png" alt="Life photo 1" /></figure>
+              <figure class="carousel-slide"><img src="/assets/img/life/02.png" alt="Life photo 2" /></figure>
+              <figure class="carousel-slide"><img src="/assets/img/life/03.png" alt="Life photo 3" /></figure>
+            </div>
           </div>
-        </div>
 
-  <div class="carousel-controls">
-    <button class="btn btn-ghost" type="button" data-carousel-prev aria-label="Previous image">Prev</button>
-    <button class="btn btn-ghost" type="button" data-carousel-next aria-label="Next image">Next</button>
+          <div class="carousel-controls">
+            <button class="btn btn-ghost" type="button" data-carousel-prev aria-label="Previous image">Prev</button>
+            <button class="btn btn-ghost" type="button" data-carousel-next aria-label="Next image">Next</button>
           </div>
         </div>
-        <p class="muted small">Replace these with real photos. Keep them web-sized (e.g., 1600px wide max).</p>
       </div>
     </div>
   </main>
