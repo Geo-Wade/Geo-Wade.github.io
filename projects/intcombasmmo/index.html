@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fuel Management — Geoff Wade</title>
+  <title>IntComBasMMO — Geoff Wade</title>
   <link rel="stylesheet" href="/css/site.css" />
   <link rel="stylesheet" href="/css/code.css" />
 
@@ -51,26 +51,23 @@
       </div>
 
       <section class="section tight">
-        <h2>Demo</h2>
+        <h2>Resource Spawn Demo</h2>
         <div class="card">
           <img class="project-media" src="assets/demo01.gif" alt="Animated demo of the project" />
-          <p class="muted small">GIFs work great here.</p>
         </div>
       </section>
 
       <section class="section tight">
         <h2>Problem</h2>
-        <p class="muted">Reacquaint myself with Java by building a small application end-to-end,
-          while practicing core OOP principles and making my own architectural decisions.
-          A key goal was to learn how to structure a maintainable codebase and persist data reliably
-          instead of relying on in-memory state.</p>
+        <p class="muted">For a game where a player can gather resources, a reliable and logical spawning of those resources is necessary, 
+          I needed to create that mechanic. </p>
       </section>
 
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
-          <li>Used a layered architecture (Controller | Service | Repository)</li>
-          <li>Dependency injection with Spring Boot</li>
+          <li>Created a volume within which resources will spawn at terrain level</li>
+          <li>Created a minimum distance between the resources </li>
           <li>Persistence over state</li>
         </ul>
       </section>
