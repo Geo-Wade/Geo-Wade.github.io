@@ -137,6 +137,50 @@
         </div>
       </section>
 
+		<section class="section tight">
+        <h2>Resource Gather Demo</h2>
+        <div class="card">
+          <img class="project-media" src="assets/demo02.gif" alt="Animated demo of the project" />
+        </div>
+      </section>
+
+      <section class="section tight">
+        <h2>Problem</h2>
+        <p class="muted">
+          Needed to design a system that would allow a character to use an assortment of tools for gathering an assortment of different resources. 
+        </p>
+      </section>
+
+      <section class="section tight">
+        <h2>Solution</h2>
+        <ul class="bullets">
+          <li>Created a parent class for resources that is inherited in UE4 blueprints where the resource actor and inventory resource are defined</li>
+          <li>Defined a weapon actor class that can be inherited in UE4 blueprints where the resources that it will be allowed to gather are defined</li>
+          <li>Created an inventory component that is attached to the local player's controller that the destroyed resource actor can insert the resources</li>
+        </ul>
+      </section>
+
+      <section class="section tight">
+        <h2>Code snippet</h2>
+        <div class="card">
+          <!-- IMPORTANT: keep code flush-left inside <code> to avoid extra indentation -->
+          <pre class="code"><code id="snippet-area" class="language-cpp">void AICBMResourceActor::GiveResourceToCharacter_Multicast_Implementation(AController* DamageingController)
+{
+	if (DamageingController != nullptr)
+	{
+		AICBMHeroCharacter* Character = Cast<AICBMHeroCharacter>(DamageingController->GetPawn());
+		if (Character != nullptr && ThisItemType != nullptr)
+		{
+			int32 Amount = FMath::RandRange(MinAmount, MaxAmount); 
+			Character->DepositInventoryItem(ThisItemType, Amount);
+		}
+	}
+}
+
+}</code></pre>
+        </div>
+      </section>
+
       <section class="section tight">
         <h2>What I learned</h2>
         <p class="muted">Recruiters love this section—keep it concrete.</p>
