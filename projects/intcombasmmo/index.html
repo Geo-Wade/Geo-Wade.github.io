@@ -188,16 +188,16 @@
       <section class="section tight">
         <h2>Problem</h2>
         <p class="muted">
-          To create a robust and scalable crafting mechanic. It must verify that required materials are present, spawn the crafted items for the player.   
+          I needed a scalable crafting system that validates required materials and delivers the crafted item to the player reliably.   
         </p>
       </section>
 
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
-          <li>Created a crafting station base class that can be inherited in blueprints.</li>
-          <li>Build a system of checking for valid matierals before spawning the crafted item</li>
-          <li>Established a system for inserting items into a players inventory that can be accessed by other actors in the world.</li>
+          <li>Created a Crafting Station base class designed for Blueprint inheritance</li>
+          <li>Implemented material validation: check the player inventory for required inputs before crafting</li>
+          <li>Built a shared inventory insert path so crafted items can be granted consistently (and reused by other world actors)</li>
         </ul>
       </section>
 
@@ -229,7 +229,10 @@
 
       <section class="section tight">
         <h2>What I learned</h2>
-        <p class="muted">This projecte relies heavily on inheritance and polymophism. The resources are gather</p>
+        <p class="muted">  Unreal’s framework and editor create a tight feedback loop: you can validate systems in-world while iterating on code and data.
+  This project strengthened my ability to design scalable, reusable gameplay systems using core OOP principles—base classes and clear
+  contracts for resources, tools, and crafting stations—while keeping behavior largely data-driven through Blueprint variants.
+  I also learned to build “safe” mechanics: validating inputs, enforcing constraints, and capping retries to guarantee predictable behavior.</p>
       </section>
     </div>
   </main>
