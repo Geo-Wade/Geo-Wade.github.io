@@ -75,36 +75,25 @@
         <h2>Code snippet</h2>
         <div class="card">
           <!-- IMPORTANT: keep code flush-left inside <code> to avoid extra indentation -->
-          <pre class="code"><code id="snippet-area" class="language-java">// This method returns the Fueling Positions that are actively fueling from a table in the database.
-@Override
-public List&lt;Integer&gt; getActiveFuelingPositionById() {
-  return activeTransactionRepo.findAll().stream()
-    .map(ActiveTransaction::getFuelingPosition)
-    .toList();
-}
+          <pre class="code"><code id="snippet-area" class="language-cpp">bool AICBMCraftingStationActor::CraftItems(UICBMInventoryItemDataAsset* CraftingItem)
+{
+	AICBMHeroCharacter* HeroCharacter = Cast<AICBMHeroCharacter>(ControllingActor); 
+	if (HeroCharacter != nullptr)
+	{
+		for(FCraftingIngredients Ingredient : CraftingItem->GetRequiredIngredients())
+		{
+			HeroCharacter->GetInventoryComponent()->RemoveItemsFromInventory(Ingredient.RequiredIngredient, Ingredient.AmountRequied); 
+		}
 
-// This method returns fueling positions that are not currently active, and are available to the equipment whose number has been entered.
-@Override
-public List&lt;Integer&gt; getInactiveFuelingPositionById(int trId) {
-  System.out.println();
-  try {
-    return fuelingPositionRepo
-      .findAll()
-      .stream()
-      .filter(pr -> startupTransactionRepo.findById(trId).orElseThrow().getEquipmentId().getProducts().stream()
-        .map(Product::getProductName)
-        .anyMatch(pr2 -> pr.getProduct().getProductName().equals(pr2)))
-      .map(FuelingPosition::getFuelingPositionNumber)
-      .filter(Predicate.not(hoseN -> activeTransactionRepo.findAll().stream()
-        .map(ActiveTransaction::getTransactions)
-        .map(Transaction::getFuelingPosition)
-        .anyMatch(x -> x.equals(hoseN))))
-      .toList();
-  } catch (Exception e) {
-    System.out.println(e);
-    return List.of();
-  }
-}</code></pre>
+		FTransform SpawnTransform = MeshComp->GetSocketTransform(SocketToSpawnCraftedItem);
+		FActorSpawnParameters SpawnParameters;
+		AActor* SpawnedActor = GetWorld()->SpawnActor(CraftingItem->GetInventoryItemClass(),
+			&SpawnTransform, SpawnParameters);
+		if (SpawnedActor != nullptr)
+		{
+			return true;
+		}
+	}</code></pre>
         </div>
       </section>
 
