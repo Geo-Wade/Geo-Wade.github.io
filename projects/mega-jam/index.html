@@ -75,25 +75,70 @@
         <h2>Code snippet</h2>
         <div class="card">
           <!-- IMPORTANT: keep code flush-left inside <code> to avoid extra indentation -->
-          <pre class="code"><code id="snippet-area" class="language-cpp">bool AICBMCraftingStationActor::CraftItems(UICBMInventoryItemDataAsset* CraftingItem)
+          <pre class="code"><code id="snippet-area" class="language-cpp">
+			  //This function runs each tick. It verifies whether the player is rewinding. If player is rewinding, it will play the rewind process. 
+			  void AMJ20Character::Tick(float DeltaTime)
 {
-	AICBMHeroCharacter* HeroCharacter = Cast<AICBMHeroCharacter>(ControllingActor); 
-	if (HeroCharacter != nullptr)
-	{
-		for(FCraftingIngredients Ingredient : CraftingItem->GetRequiredIngredients())
-		{
-			HeroCharacter->GetInventoryComponent()->RemoveItemsFromInventory(Ingredient.RequiredIngredient, Ingredient.AmountRequied); 
-		}
+	Super::Tick(DeltaTime);
 
-		FTransform SpawnTransform = MeshComp->GetSocketTransform(SocketToSpawnCraftedItem);
-		FActorSpawnParameters SpawnParameters;
-		AActor* SpawnedActor = GetWorld()->SpawnActor(CraftingItem->GetInventoryItemClass(),
-			&SpawnTransform, SpawnParameters);
-		if (SpawnedActor != nullptr)
+	FVector TickDeltaMove = (DeltaForward + DeltaRight) * DeltaTime; 
+	if (!bIsRewinding)
+	{
+		PlayNextMove(TickDeltaMove, NewRotation);
+	}
+	else
+	{
+		PlayNextRewindMove(); 
+	}
+
+	CreateTrace(); 
+
+}
+// If the player is rewinding, this function will play the next location from a list of previous locations. 
+void AMJ20Character::PlayNextRewindMove()
+{
+	if (RewindProperties.Num() > 0)
+	{
+		int index = RewindProperties.Num() - 1;
+		if (RewindProperties[index].bInteracted)
 		{
-			return true;
+			UE_LOG(LogTemp, Warning, TEXT("%d"), RewindProperties.Num());
+			Interact(RewindProperties[index].InteractedWith); 
+			RewindProperties[index].bInteracted = false; 
 		}
-	}</code></pre>
+		FVector CurrentLocation = GetActorLocation(); 
+		FVector NextDestination = RewindProperties[index].RewindMove.GetLocation(); 
+		FVector DistanceBetweenPoints = NextDestination - CurrentLocation;
+		float DistanceToDestination = DistanceBetweenPoints.Size(); 
+		DistanceBetweenPoints.Normalize();
+
+		if(DistanceToDestination > 50.f)
+		{
+
+
+			FVector RewindDeltaMove = DistanceBetweenPoints * RewindSpeed * GetWorld()->DeltaTimeSeconds;
+			PlayNextMove(RewindDeltaMove, GetCapsuleComponent()->GetComponentRotation());
+		}
+		else
+		{
+			if (RewindProperties[index].bInteracted && RewindProperties[index].InteractedWith != nullptr)
+			{
+				AMJ20LeverActor* Lever = Cast<AMJ20LeverActor>(RewindProperties[index].InteractedWith);
+				if(Lever != nullptr)
+				{
+					Interact(Lever); 
+				}
+			}
+			RewindProperties.RemoveAt(index); 
+		}
+	}
+	else
+	{
+		bIsRewinding = false;
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+
+	}
+}</code></pre>
         </div>
       </section>
 
