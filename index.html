@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>Geoff Wade — Portfolio</title>
-  <meta name="description" content="Personal portfolio: projects, about, and contact." />
-  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <meta name="description" content="Geoff Wade — portfolio: projects, about, and contact." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/css/site.css" />
 </head>
 
@@ -21,6 +21,7 @@
       </a>
 
       <nav class="nav" aria-label="Primary">
+        <a aria-current="page" href="/">Home</a>
         <a href="/about/">About</a>
         <a href="/projects/">Projects</a>
         <a href="#contact">Contact</a>
@@ -34,13 +35,13 @@
   </header>
 
   <main id="main">
-    <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Developer • Builder • Problem Solver</p>
+          <h1>Java backend focus, production debugging background.</h1>
           <p class="lead">
-            Product support specialist with strong debugging experience, now moving into Java backend development. 
+            Product support specialist with strong troubleshooting and root-cause work—now moving into Java backend development.
           </p>
 
           <div class="hero-cta">
@@ -55,9 +56,9 @@
           </ul>
         </div>
 
-        <aside class="hero-card" aria-label="Quick profile">
+        <aside class="hero-card card" aria-label="Quick profile">
           <div class="profile">
-            <img class="avatar" src="assets/img/headshot.png" alt="Your headshot" />
+            <img class="avatar" src="/assets/img/headshot.png" alt="Headshot of Geoff Wade" />
             <div class="profile-meta">
               <p class="profile-name">Geoff Wade</p>
               <p class="profile-title">Software Developer</p>
@@ -83,12 +84,11 @@
       </div>
     </section>
 
-    <!-- Currently Working On (auto from JSON) -->
     <section class="section">
       <div class="container section-head">
         <div>
           <h2>Currently Working On</h2>
-          <p class="muted">A summary of projects I've worked on</p>
+          <p class="muted">Featured work and recent builds.</p>
         </div>
         <div class="section-actions">
           <a class="btn btn-ghost" href="/projects/">All projects</a>
@@ -97,7 +97,6 @@
 
       <div class="container">
         <div id="featured-projects" class="grid cards" aria-live="polite">
-          <!-- populated by /js/projects.js -->
           <div class="skeleton card" aria-hidden="true"></div>
           <div class="skeleton card" aria-hidden="true"></div>
           <div class="skeleton card" aria-hidden="true"></div>
@@ -105,18 +104,17 @@
       </div>
     </section>
 
-    <!-- ABOUT PREVIEW + CAROUSEL TEASER -->
     <section class="section alt">
       <div class="container two-col">
         <div>
           <h2>About</h2>
           <p class="muted">
-            Java developer looking for first professional development role. 
+            Java developer pursuing a first professional development role, with a strong track record in production debugging and customer-impacting fixes.
           </p>
           <ul class="bullets">
             <li>Strong Java fundamentals (OOP, data structures) with C++ experience</li>
             <li>Proven troubleshooting and root-cause debugging in production environments</li>
-            <li>Building team-ready code: clean architecture, testing, and Git workflows</li>
+            <li>Building team-ready code: architecture, testing mindset, and Git workflows</li>
           </ul>
           <a class="btn btn-solid" href="/about/">Read more</a>
         </div>
@@ -125,13 +123,13 @@
           <div class="carousel" data-carousel>
             <div class="carousel-track" data-carousel-track>
               <figure class="carousel-slide">
-                <img src="assets/img/life/01.png" alt="Life photo 1" />
+                <img src="/assets/img/life/01.png" alt="Life photo 1" />
               </figure>
               <figure class="carousel-slide">
-                <img src="assets/img/life/02.png" alt="Life photo 2" />
+                <img src="/assets/img/life/02.png" alt="Life photo 2" />
               </figure>
               <figure class="carousel-slide">
-                <img src="assets/img/life/03.png" alt="Life photo 3" />
+                <img src="/assets/img/life/03.png" alt="Life photo 3" />
               </figure>
             </div>
             <div class="carousel-controls">
@@ -139,12 +137,10 @@
               <button class="btn btn-ghost" type="button" data-carousel-next aria-label="Next image">Next</button>
             </div>
           </div>
-          <p class="muted small">This carousel is the same component used on the About page.</p>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="section">
       <div class="container section-head">
         <div>
@@ -154,7 +150,7 @@
 
       <div class="container grid contact-cards">
         <a class="card link-card" href="mailto:GeoffDWade@gmail.com">
-           <p class="kicker">LinkedIn</p>
+          <p class="kicker">Email</p>
           <p class="big">GeoffDWade@gmail.com</p>
           <p class="muted small">Best for opportunities and collaborations.</p>
         </a>
@@ -178,6 +174,7 @@
     <div class="container footer-inner">
       <p class="muted">© <span id="year"></span> Geoff Wade</p>
       <nav class="nav" aria-label="Footer">
+        <a href="/">Home</a>
         <a href="/about/">About</a>
         <a href="/projects/">Projects</a>
         <a href="#contact">Contact</a>
