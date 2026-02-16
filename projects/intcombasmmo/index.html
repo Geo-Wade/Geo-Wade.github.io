@@ -60,17 +60,16 @@
       <section class="section tight">
         <h2>Problem</h2>
         <p class="muted">
-          For a game where a player can gather resources, a reliable and logical spawning of those resources is necessary.
-          I needed to create that mechanic.
+          Players need resources to spawn predictably and fairly. I needed a system that places resources logically on the terrain without clustering or breaking under crowded conditions.
         </p>
       </section>
 
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
-          <li>Created a volume within which resources will spawn at terrain level</li>
-          <li>Created a minimum distance between the resources</li>
-          <li>Added a capped retry loop to avoid infinite searches when the area is too crowded</li>
+          <li>Sample spawn points within a configurable volume and snap placement to terrain level</li>
+          <li>Reject candidates that violate a minimum inter-resource distance</li>
+          <li>imit placement attempts with a retry cap to guarantee completion even when overcrowded</li>
         </ul>
       </section>
 
@@ -140,23 +139,23 @@
 		<section class="section tight">
         <h2>Resource Gather Demo</h2>
         <div class="card">
-          <img class="project-media" src="assets/demo02.gif" alt="Animated demo of the project" />
+          <img class="project-media" src="assets/demo03.gif" alt="Animated demo of the project" />
         </div>
       </section>
 
       <section class="section tight">
         <h2>Problem</h2>
         <p class="muted">
-          Needed to design a system that would allow a character to use an assortment of tools for gathering an assortment of different resources. 
+          Design a scalable tool-to-resource interaction model that supports many resource types and tool variants, while keeping the logic maintainable in Blueprints.
         </p>
       </section>
 
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
-          <li>Created a parent class for resources that is inherited in UE4 blueprints where the resource actor and inventory resource are defined</li>
-          <li>Defined a weapon actor class that can be inherited in UE4 blueprints where the resources that it will be allowed to gather are defined</li>
-          <li>Created an inventory component that is attached to the local player's controller that the destroyed resource actor can insert the resources</li>
+          <li>Created a Resource base class (C++) with Blueprint children that define world representation and inventory representation</li>
+          <li>Created a Tool/Weapon base class with an allowlist of gatherable resource classes/types set in Blueprint</li>
+          <li>Implemented an Inventory Component on the local Player Controller; on successful gather, the resource actor is destroyed and deposits its item payload into inventory</li>
         </ul>
       </section>
 
@@ -181,7 +180,7 @@
 
       <section class="section tight">
         <h2>What I learned</h2>
-        <p class="muted">Recruiters love this section—keep it concrete.</p>
+        <p class="muted">This projecte relies heavily on inheritance and polymophism. The resources are gather</p>
       </section>
     </div>
   </main>
