@@ -1,50 +1,43 @@
-/* /css/site.css — Modern “Liquid Glass” (Earthy: Lavender + Dark Forest + Burnt Orange)
-   - Mature, punchy, less “template”
-   - Keeps your existing class names (hero, cards, nav, section, etc.)
+/* /css/site.css — Liquid Glass, but serious (Lavender + Forest + Ember, restrained)
+   - Masculine, editorial, less “glow”
+   - Keeps existing class names
    - No framework required
 */
 
 :root{
   /* =========
-     Brand palette (from your riding colors)
+     Brand palette (muted, grown-up)
      ========= */
-  --lavender: #B7A1FF;      /* soft, modern lavender */
-  --forest:   #0F2B1D;      /* dark forest green */
-  --ember:    #C66A2B;      /* burnt orange */
-  --sage:     #8FAE9A;      /* supporting neutral-green for subtle accents */
+  --lavender-ink: #8E83C9;   /* muted lavender (ink, not neon) */
+  --forest-deep:  #0B2217;   /* dark forest */
+  --ember:        #B45F2A;   /* burnt orange (subtle) */
+  --sage:         #7F9A88;   /* support neutral */
 
   /* =========
-     Core surface palette (dark)
+     Core surfaces (dark, serious)
      ========= */
-  --bg0:#05070A;
-  --bg1:#070B0E;
-  --bg2:#0A1012;
+  --bg0:#050708;
+  --bg1:#070A0C;
+  --bg2:#0B1012;
 
   --text:  rgba(255,255,255,.92);
-  --muted: rgba(255,255,255,.64);
+  --muted: rgba(255,255,255,.62);
 
-  /* Glass system */
-  --glass-0: rgba(255,255,255,.055);
-  --glass-1: rgba(255,255,255,.095);
-  --glass-2: rgba(255,255,255,.14);
-  --stroke:  rgba(255,255,255,.17);
+  /* Glass system (slightly drier) */
+  --glass-0: rgba(255,255,255,.045);
+  --glass-1: rgba(255,255,255,.075);
+  --glass-2: rgba(255,255,255,.11);
+  --stroke:  rgba(255,255,255,.14);
 
-  /* Accents (primary/secondary/heat)
-     - Lavender is your “hero” accent
-     - Forest is structural (focus rings, subtle tints)
-     - Ember is for CTAs / highlights
-  */
-  --accent:   var(--lavender);
-  --accent2:  color-mix(in srgb, var(--sage) 70%, var(--lavender)); /* calm green-lavender */
-  --hot:      var(--ember);
+  /* Accents (controlled) */
+  --accent:  var(--lavender-ink); /* links + focus */
+  --accent2: color-mix(in srgb, var(--sage) 66%, var(--lavender-ink)); /* calm secondary */
+  --hot:     var(--ember); /* CTAs only */
 
-  /* Status */
-  --ok:       #34C759;
-
-  /* Depth */
-  --shadow-1: 0 10px 24px rgba(0,0,0,.38);
-  --shadow-2: 0 18px 48px rgba(0,0,0,.52);
-  --shadow-3: 0 34px 110px rgba(0,0,0,.66);
+  /* Depth (still premium, less glossy) */
+  --shadow-1: 0 10px 22px rgba(0,0,0,.42);
+  --shadow-2: 0 18px 44px rgba(0,0,0,.56);
+  --shadow-3: 0 34px 100px rgba(0,0,0,.70);
 
   /* Radius */
   --r1: 14px;
@@ -63,18 +56,18 @@
   --pad: 20px;
 }
 
-/* Light mode: crisp, still glassy, with earthy tint */
+/* Light mode: still earthy, not “pastel” */
 @media (prefers-color-scheme: light){
   :root{
-    --bg0:#F5F4F1;  /* warm paper */
+    --bg0:#F4F3EF;
     --bg1:#FFFFFF;
     --bg2:#FFFFFF;
 
     --text: rgba(10,16,18,.90);
     --muted: rgba(10,16,18,.60);
 
-    --glass-0: rgba(255,255,255,.62);
-    --glass-1: rgba(255,255,255,.82);
+    --glass-0: rgba(255,255,255,.64);
+    --glass-1: rgba(255,255,255,.84);
     --glass-2: rgba(255,255,255,.94);
     --stroke:  rgba(10,16,18,.09);
 
@@ -96,19 +89,19 @@ body{
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
-  /* Earthy “field”: lavender top-left, ember top-right, forest bottom */
+  /* Background: minimal, disciplined */
   background:
-    radial-gradient(1100px 680px at 16% 10%,
-      color-mix(in srgb, var(--accent) 20%, transparent), transparent 62%),
-    radial-gradient(900px 560px at 88% 14%,
-      color-mix(in srgb, var(--hot) 16%, transparent), transparent 64%),
+    radial-gradient(900px 560px at 18% 10%,
+      color-mix(in srgb, var(--accent) 9%, transparent), transparent 68%),
+    radial-gradient(800px 520px at 88% 14%,
+      color-mix(in srgb, var(--hot) 7%, transparent), transparent 70%),
     radial-gradient(1200px 720px at 50% 112%,
-      color-mix(in srgb, var(--forest) 38%, transparent), transparent 62%),
+      color-mix(in srgb, var(--forest-deep) 42%, transparent), transparent 64%),
     linear-gradient(180deg, var(--bg0) 0%, var(--bg2) 100%);
 }
 
 a{
-  color: color-mix(in srgb, var(--accent) 80%, white 20%);
+  color: color-mix(in srgb, var(--accent) 78%, white 22%);
   text-decoration:none;
 }
 a:hover{ text-decoration:underline; }
@@ -138,12 +131,10 @@ p{ margin:0 0 12px 0; }
 .section{ padding: 84px 0; }
 .section.tight{ padding: 42px 0; }
 
-/* Alternate section: quieter, editorial */
 .section.alt{
-  background:
-    linear-gradient(180deg,
-      color-mix(in srgb, var(--glass-0) 86%, transparent),
-      transparent 72%);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--glass-0) 88%, transparent),
+    transparent 72%);
   border-top: 1px solid color-mix(in srgb, var(--stroke) 70%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--stroke) 70%, transparent);
 }
@@ -173,14 +164,14 @@ p{ margin:0 0 12px 0; }
 }
 .skip-link:focus{ left:10px; z-index:30; }
 
-/* Header: refined glass bar */
+/* Header */
 .site-header{
   position: sticky;
   top:0;
   z-index:20;
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-  background: color-mix(in srgb, var(--glass-0) 78%, transparent);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  background: color-mix(in srgb, var(--glass-0) 80%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--stroke) 86%, transparent);
 }
 .header-inner{
@@ -200,14 +191,14 @@ p{ margin:0 0 12px 0; }
   width: 28px; height: 28px;
   border-radius: 12px;
   background:
-    radial-gradient(10px 10px at 30% 28%, rgba(255,255,255,.35), transparent 60%),
+    radial-gradient(10px 10px at 30% 28%, rgba(255,255,255,.22), transparent 60%),
     linear-gradient(135deg,
-      color-mix(in srgb, var(--accent) 92%, black),
-      color-mix(in srgb, var(--hot) 78%, black));
+      color-mix(in srgb, var(--forest-deep) 84%, black),
+      color-mix(in srgb, var(--accent) 60%, black));
   box-shadow: var(--shadow-1);
 }
 .brand-text{
-  font-weight: 760;
+  font-weight: 780;
   letter-spacing: -0.015em;
 }
 
@@ -220,15 +211,15 @@ p{ margin:0 0 12px 0; }
   transition: background-color .16s ease, color .16s ease, transform .16s ease;
 }
 .nav a:hover{
-  background: color-mix(in srgb, var(--glass-1) 70%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 62%, transparent);
   color: var(--text);
   text-decoration:none;
   transform: translateY(-1px);
 }
 .nav a[aria-current="page"]{
   color: var(--text);
-  background: color-mix(in srgb, var(--glass-1) 86%, transparent);
-  border: 1px solid color-mix(in srgb, var(--stroke) 85%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stroke) 86%, transparent);
 }
 
 /* Buttons */
@@ -239,7 +230,7 @@ p{ margin:0 0 12px 0; }
   gap:8px;
   padding: 11px 14px;
   border-radius: 999px;
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing:-0.01em;
   border: 1px solid color-mix(in srgb, var(--stroke) 90%, transparent);
   color: var(--text);
@@ -253,66 +244,64 @@ p{ margin:0 0 12px 0; }
 
 .btn-ghost{
   background: color-mix(in srgb, var(--glass-0) 90%, transparent);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
 }
 .btn-ghost:hover{
-  background: color-mix(in srgb, var(--glass-1) 82%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 72%, transparent);
   box-shadow: var(--shadow-1);
 }
 
-/* Primary CTA uses burnt orange + lavender edge — still “pro” */
+/* Solid CTA: ember, but not candy */
 .btn-solid{
-  color: #120A06;
-  border: none;
+  color: rgba(255,255,255,.92);
+  border: 1px solid color-mix(in srgb, var(--hot) 36%, var(--stroke));
   background:
-    radial-gradient(14px 14px at 30% 25%, rgba(255,255,255,.55), transparent 60%),
-    linear-gradient(135deg,
-      color-mix(in srgb, var(--hot) 90%, white 10%),
-      color-mix(in srgb, var(--accent) 78%, white 22%));
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--hot) 46%, #111 54%),
+      color-mix(in srgb, var(--hot) 34%, #0B0F12 66%));
   box-shadow: var(--shadow-2);
 }
 .btn-solid:hover{
-  filter: brightness(1.03);
+  filter: brightness(1.04);
   box-shadow: var(--shadow-3);
 }
 
-/* Cards */
+/* Cards: less sheen, more “hardware” */
 .card{
   position: relative;
   padding: 20px;
   border-radius: var(--r3);
   border: 1px solid color-mix(in srgb, var(--stroke) 92%, transparent);
   background:
-    radial-gradient(760px 260px at 18% 0%,
-      color-mix(in srgb, white 14%, transparent), transparent 60%),
+    radial-gradient(900px 300px at 15% 0%,
+      rgba(255,255,255,.085), transparent 60%),
     linear-gradient(180deg,
-      color-mix(in srgb, var(--glass-0) 88%, transparent),
-      color-mix(in srgb, var(--glass-0) 58%, transparent));
+      color-mix(in srgb, var(--glass-0) 92%, transparent),
+      color-mix(in srgb, var(--glass-0) 64%, transparent));
   box-shadow: var(--shadow-2);
   overflow:hidden;
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
+/* Very subtle edge highlight (remove “gloss stripe”) */
 .card::after{
   content:"";
   position:absolute;
-  left: 12px; right:12px; top: 10px;
-  height: 42%;
+  left: 14px; right:14px; top: 12px;
+  height: 34%;
   border-radius: calc(var(--r3) - 12px);
-  background: linear-gradient(180deg,
-    color-mix(in srgb, var(--accent) 16%, white 10%),
-    transparent 68%);
-  opacity: .55;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), transparent 72%);
+  opacity: .45;
   pointer-events:none;
 }
 
 .card:hover{
   transform: translateY(-3px);
   box-shadow: var(--shadow-3);
-  border-color: color-mix(in srgb, var(--accent) 26%, var(--stroke));
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--stroke));
 }
 
 .link-card{ display:block; }
@@ -408,12 +397,12 @@ p{ margin:0 0 12px 0; }
   color: var(--text);
   min-width: 240px;
   outline: none;
-  backdrop-filter: blur(10px) saturate(140%);
-  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
 }
 .input:focus{
-  border-color: color-mix(in srgb, var(--forest) 55%, var(--stroke));
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 18%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 44%, var(--stroke));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 /* Carousel */
@@ -436,7 +425,7 @@ p{ margin:0 0 12px 0; }
   height: 300px;
   object-fit: cover;
   display:block;
-  filter: saturate(1.02) contrast(1.02);
+  filter: saturate(1.01) contrast(1.02);
 }
 .carousel-controls{ display:flex; gap:10px; justify-content:flex-end; }
 
@@ -473,8 +462,8 @@ p{ margin:0 0 12px 0; }
   border-top: 1px solid color-mix(in srgb, var(--stroke) 76%, transparent);
   padding: 26px 0;
   background: color-mix(in srgb, var(--glass-0) 70%, transparent);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
 }
 .footer-inner{
   display:flex; justify-content:space-between; align-items:center;
@@ -489,7 +478,7 @@ p{ margin:0 0 12px 0; }
   background:
     linear-gradient(90deg,
       color-mix(in srgb, var(--glass-0) 72%, transparent),
-      color-mix(in srgb, var(--glass-1) 78%, transparent),
+      color-mix(in srgb, var(--glass-1) 76%, transparent),
       color-mix(in srgb, var(--glass-0) 72%, transparent));
   background-size: 200% 100%;
   animation: shimmer 1.15s ease-in-out infinite;
