@@ -3,29 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
   <title>IntComBasMMO — Geoff Wade</title>
+  <meta name="description" content="IntComBasMMO — Unreal Engine gameplay systems by Geoff Wade." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/css/site.css" />
   <link rel="stylesheet" href="/css/code.css" />
 
-  <!-- Prism syntax highlighting (static-friendly) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-okaidia.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-  <!-- C++ highlighting -->
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="/"><span class="brand-mark">◆</span><span class="brand-text">Geoff Wade</span></a>
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">◆</span><span class="brand-text">Geoff Wade</span></a>
+
       <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
         <a href="/about/">About</a>
-        <a href="/projects/">Projects</a>
+        <a aria-current="page" href="/projects/">Projects</a>
         <a href="/#contact">Contact</a>
       </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="https://github.com/Geo-Wade" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn-solid" href="/projects/">All Projects</a>
+      </div>
     </div>
   </header>
 
-  <main class="section">
+  <main id="main" class="section">
     <div class="container">
       <p class="muted"><a href="/projects/">← Back to projects</a></p>
 
@@ -33,10 +43,10 @@
         <div>
           <h1>IntConBasMMO</h1>
           <p class="muted">
-            A project where I built game mechanics for spawning and gathering resources, crafting, and basic game combat.
+            Unreal Engine 4 gameplay systems: resource spawning/gathering, crafting, and foundational combat mechanics.
           </p>
           <div class="project-links">
-            <a class="btn btn-solid" href="https://github.com/Geo-Wade/FuelManagementApp2" target="_blank" rel="noreferrer">Repo</a>
+            <a class="btn btn-solid" href="https://github.com/Geo-Wade/Interwoven-Content-Based-MMO" target="_blank" rel="noreferrer">Repo</a>
           </div>
           <ul class="pill-row">
             <li class="pill">C++</li>
@@ -46,21 +56,21 @@
         </div>
 
         <div class="card">
-          <img class="project-media" src="assets/hero.png" alt="Project hero screenshot" />
+          <img class="project-media" src="assets/hero.png" alt="IntConBasMMO project screenshot" />
         </div>
       </div>
 
       <section class="section tight">
         <h2>Resource Spawn Demo</h2>
         <div class="card">
-          <img class="project-media" src="assets/demo01.gif" alt="Animated demo of the project" />
+          <img class="project-media" src="assets/demo01.gif" alt="Animated demo: resource spawning" />
         </div>
       </section>
 
       <section class="section tight">
         <h2>Problem</h2>
         <p class="muted">
-          Players need resources to spawn predictably and fairly. I needed a system that places resources logically on the terrain without clustering or breaking under crowded conditions.
+          Players need resources to spawn predictably and fairly. I needed a system that places resources logically on the terrain without clustering or failing under crowded conditions.
         </p>
       </section>
 
@@ -69,14 +79,13 @@
         <ul class="bullets">
           <li>Sample spawn points within a configurable volume and snap placement to terrain level</li>
           <li>Reject candidates that violate a minimum inter-resource distance</li>
-          <li>Limit placement attempts with a retry cap to guarantee completion even when overcrowded</li>
+          <li>Cap retries to guarantee completion even when the area is overcrowded</li>
         </ul>
       </section>
 
       <section class="section tight">
         <h2>Code snippet</h2>
         <div class="card">
-          <!-- IMPORTANT: keep code flush-left inside <code> to avoid extra indentation -->
           <pre class="code"><code id="snippet-area" class="language-cpp">void AICBMResourceSpawner::FindLocationToSpawn(FVector* OutVector)
 {
 	int NumberOfTries = 0;
@@ -136,10 +145,10 @@
         </div>
       </section>
 
-		<section class="section tight">
+      <section class="section tight">
         <h2>Resource Gather Demo</h2>
         <div class="card">
-          <img class="project-media" src="assets/demo02.gif" alt="Animated demo of the project" />
+          <img class="project-media" src="assets/demo02.gif" alt="Animated demo: resource gathering" />
         </div>
       </section>
 
@@ -153,72 +162,70 @@
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
-          <li>Created a Resource base class (C++) with Blueprint children that define world representation and inventory representation</li>
-          <li>Created a Tool/Weapon base class with an allowlist of gatherable resource classes/types set in Blueprint</li>
-          <li>Implemented an Inventory Component on the local Player Controller; on successful gather, the resource actor is destroyed and deposits its item payload into inventory</li>
+          <li>Resource base class (C++) with Blueprint children for world + inventory representation</li>
+          <li>Tool/Weapon base class with a Blueprint-configured allowlist of gatherable resource types</li>
+          <li>Inventory Component on the local Player Controller; on gather, destroy world actor and deposit item payload</li>
         </ul>
       </section>
 
       <section class="section tight">
         <h2>Code snippet</h2>
         <div class="card">
-          <!-- IMPORTANT: keep code flush-left inside <code> to avoid extra indentation -->
           <pre class="code"><code id="snippet-area" class="language-cpp">void AICBMResourceActor::GiveResourceToCharacter_Multicast_Implementation(AController* DamageingController)
 {
 	if (DamageingController != nullptr)
 	{
-		AICBMHeroCharacter* Character = Cast<AICBMHeroCharacter>(DamageingController->GetPawn());
-		if (Character != nullptr && ThisItemType != nullptr)
+		AICBMHeroCharacter* Character = Cast&lt;AICBMHeroCharacter&gt;(DamageingController-&gt;GetPawn());
+		if (Character != nullptr &amp;&amp; ThisItemType != nullptr)
 		{
-			int32 Amount = FMath::RandRange(MinAmount, MaxAmount); 
-			Character->DepositInventoryItem(ThisItemType, Amount);
+			int32 Amount = FMath::RandRange(MinAmount, MaxAmount);
+			Character-&gt;DepositInventoryItem(ThisItemType, Amount);
 		}
 	}
 }</code></pre>
         </div>
       </section>
 
-		<section class="section tight">
-        <h2>Resource Gather Demo</h2>
+      <section class="section tight">
+        <h2>Crafting Demo</h2>
         <div class="card">
-          <img class="project-media" src="assets/demo03.gif" alt="Animated demo of the project" />
+          <img class="project-media" src="assets/demo03.gif" alt="Animated demo: crafting" />
         </div>
       </section>
 
       <section class="section tight">
         <h2>Problem</h2>
         <p class="muted">
-          I needed a scalable crafting system that validates required materials and delivers the crafted item to the player reliably.   
+          I needed a crafting system that validates required materials and delivers the crafted item to the player reliably.
         </p>
       </section>
 
       <section class="section tight">
         <h2>Solution</h2>
         <ul class="bullets">
-          <li>Created a Crafting Station base class designed for Blueprint inheritance</li>
-          <li>Implemented material validation: check the player inventory for required inputs before crafting</li>
-          <li>Built a shared inventory insert path so crafted items can be granted consistently (and reused by other world actors)</li>
+          <li>Crafting Station base class designed for Blueprint inheritance</li>
+          <li>Material validation: check player inventory for required inputs before crafting</li>
+          <li>Shared “grant item” path so crafted items are delivered consistently</li>
         </ul>
       </section>
 
       <section class="section tight">
         <h2>Code snippet</h2>
         <div class="card">
-          <!-- IMPORTANT: keep code flush-left inside <code> to avoid extra indentation -->
           <pre class="code"><code id="snippet-area" class="language-cpp">bool AICBMCraftingStationActor::CraftItems(UICBMInventoryItemDataAsset* CraftingItem)
 {
-	AICBMHeroCharacter* HeroCharacter = Cast<AICBMHeroCharacter>(ControllingActor); 
+	AICBMHeroCharacter* HeroCharacter = Cast&lt;AICBMHeroCharacter&gt;(ControllingActor);
 	if (HeroCharacter != nullptr)
 	{
-		for(FCraftingIngredients Ingredient : CraftingItem->GetRequiredIngredients())
+		for(FCraftingIngredients Ingredient : CraftingItem-&gt;GetRequiredIngredients())
 		{
-			HeroCharacter->GetInventoryComponent()->RemoveItemsFromInventory(Ingredient.RequiredIngredient, Ingredient.AmountRequied); 
+			HeroCharacter-&gt;GetInventoryComponent()-&gt;RemoveItemsFromInventory(Ingredient.RequiredIngredient, Ingredient.AmountRequied);
 		}
 
-		FTransform SpawnTransform = MeshComp->GetSocketTransform(SocketToSpawnCraftedItem);
+		FTransform SpawnTransform = MeshComp-&gt;GetSocketTransform(SocketToSpawnCraftedItem);
 		FActorSpawnParameters SpawnParameters;
-		AActor* SpawnedActor = GetWorld()->SpawnActor(CraftingItem->GetInventoryItemClass(),
-			&SpawnTransform, SpawnParameters);
+		AActor* SpawnedActor = GetWorld()-&gt;SpawnActor(CraftingItem-&gt;GetInventoryItemClass(),
+			&amp;SpawnTransform, SpawnParameters);
 		if (SpawnedActor != nullptr)
 		{
 			return true;
@@ -229,10 +236,12 @@
 
       <section class="section tight">
         <h2>What I learned</h2>
-        <p class="muted">  Unreal’s framework and editor create a tight feedback loop: you can validate systems in-world while iterating on code and data.
-  This project strengthened my ability to design scalable, reusable gameplay systems using core OOP principles—base classes and clear
-  contracts for resources, tools, and crafting stations—while keeping behavior largely data-driven through Blueprint variants.
-  I also learned to build “safe” mechanics: validating inputs, enforcing constraints, and capping retries to guarantee predictable behavior.</p>
+        <p class="muted">
+          Unreal’s framework and editor create a tight feedback loop: validate systems in-world while iterating on code and data.
+          This project strengthened my ability to design scalable, reusable gameplay systems using core OOP principles—base classes and clear
+          contracts—while keeping behavior data-driven through Blueprint variants. I also learned to build “safe” mechanics:
+          validate inputs, enforce constraints, and cap retries for predictable behavior.
+        </p>
       </section>
     </div>
   </main>
@@ -242,11 +251,13 @@
       <p class="muted">© <span id="year"></span> Geoff Wade</p>
       <nav class="nav" aria-label="Footer">
         <a href="/">Home</a>
-        <a href="/projects/">Projects</a>
-        <a href="/projects/">Projects</a>
         <a href="/about/">About</a>
+        <a href="/projects/">Projects</a>
+        <a href="/#contact">Contact</a>
       </nav>
     </div>
   </footer>
+
+  <script src="/js/site.js" defer></script>
 </body>
 </html>
