@@ -18,6 +18,15 @@
       "href": "/projects/intcombasmmo/",
       "repo": "https://github.com/Geo-Wade/Interwoven-Content-Based-MMO",
       "heroImage": "/projects/intcombasmmo/assets/hero.png"
+    },
+    {
+    "id": "mega-jam",
+      "title": "Epic Mega Jam Submission",
+      "summary": "Game created for entry into the Epic Mega Jam",
+      "tags": ["UE4", "C++", "Gameplay"],
+      "href": "/projects/mega-jam/",
+      "repo": "https://github.com/Geo-Wade/MegaJamEntry2020",
+      "heroImage": "/projects/mega-jam/assets/hero.png"
     }
   ]
 }
