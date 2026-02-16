@@ -1,22 +1,17 @@
-/* /css/site.css — “Cathedral Glass” Gothic (1800s engraving + velvet) but professional
-   - Gothic = vertical rhythm, sharp silhouettes, filigree, letterpress lines
-   - Still modern UX: readable, restrained, no Hot Topic angst
-   - Keeps existing class names
-   - No framework required
+/* /css/site.css — “Cathedral Glass” (classic gothic geometry + modern liquid glass)
+   - Keeps your existing class names and JS hooks
+   - Uniform header/footer across pages
+   - Fix: project card buttons align to bottom (no HTML changes)
 */
 
 :root{
-  /* =========
-     Brand palette (muted, grown-up)
-     ========= */
-  --lavender-ink: #8E83C9;   /* muted lavender (ink, not neon) */
-  --forest-deep:  #0B2217;   /* dark forest */
-  --ember:        #B45F2A;   /* burnt orange (subtle) */
-  --sage:         #7F9A88;   /* support neutral */
+  /* Brand palette */
+  --lavender-ink: #8E83C9;
+  --forest-deep:  #0B2217;
+  --ember:        #B45F2A;
+  --sage:         #7F9A88;
 
-  /* =========
-     Core surfaces (dark, serious)
-     ========= */
+  /* Surfaces */
   --bg0:#040506;
   --bg1:#06090A;
   --bg2:#0A0F10;
@@ -24,34 +19,34 @@
   --text:  rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.62);
 
-  /* Glass system (drier, “lead came” edges) */
+  /* Glass */
   --glass-0: rgba(255,255,255,.035);
-  --glass-1: rgba(255,255,255,.060);
-  --glass-2: rgba(255,255,255,.095);
+  --glass-1: rgba(255,255,255,.070);
+  --glass-2: rgba(255,255,255,.110);
 
-  /* Stroke & “engraving” */
-  --stroke:   rgba(255,255,255,.13);
-  --stroke-2: rgba(255,255,255,.09);
+  /* Strokes / “engraving” */
+  --stroke:   rgba(255,255,255,.14);
+  --stroke-2: rgba(255,255,255,.10);
   --inkline:  color-mix(in srgb, var(--text) 18%, transparent);
 
-  /* Accents (controlled) */
-  --accent:  var(--lavender-ink); /* links + focus */
+  /* Accents */
+  --accent:  var(--lavender-ink);
   --accent2: color-mix(in srgb, var(--sage) 68%, var(--lavender-ink));
-  --hot:     var(--ember); /* CTAs only */
+  --hot:     var(--ember);
 
-  /* Depth (velvet + iron) */
+  /* Depth */
   --shadow-1: 0 10px 22px rgba(0,0,0,.46);
   --shadow-2: 0 20px 56px rgba(0,0,0,.64);
   --shadow-3: 0 44px 120px rgba(0,0,0,.78);
 
-  /* Radius (slightly sharper = more gothic) */
+  /* Radius */
   --r1: 12px;
   --r2: 16px;
   --r3: 22px;
 
   /* Type */
-  --h1: clamp(2.3rem, 1.2rem + 3.4vw, 4.05rem);
-  --h2: clamp(1.4rem, 1.05rem + 1.35vw, 2.15rem);
+  --h1: clamp(2.2rem, 1.1rem + 3.2vw, 4.0rem);
+  --h2: clamp(1.35rem, 1.02rem + 1.35vw, 2.15rem);
   --h3: 1.08rem;
   --lead: 1.08rem;
   --body: 1rem;
@@ -60,13 +55,12 @@
   --container: 1100px;
   --pad: 20px;
 
-  /* “Cathedral” motif knobs */
-  --filigree-a: color-mix(in srgb, var(--accent) 16%, transparent);
+  /* Motif knobs */
+  --filigree-a: color-mix(in srgb, var(--accent) 18%, transparent);
   --filigree-b: color-mix(in srgb, var(--forest-deep) 42%, transparent);
-  --filigree-c: color-mix(in srgb, var(--hot) 11%, transparent);
+  --filigree-c: color-mix(in srgb, var(--hot) 12%, transparent);
 }
 
-/* Light mode: parchment + ink, not pastel */
 @media (prefers-color-scheme: light){
   :root{
     --bg0:#F3F1EA;
@@ -80,7 +74,7 @@
     --glass-1: rgba(255,255,255,.86);
     --glass-2: rgba(255,255,255,.95);
 
-    --stroke:   rgba(12,16,18,.11);
+    --stroke:   rgba(12,16,18,.12);
     --stroke-2: rgba(12,16,18,.08);
     --inkline:  rgba(12,16,18,.10);
 
@@ -102,11 +96,10 @@ body{
                "Segoe UI", Roboto, Helvetica, Arial;
   font-size: var(--body);
   color: var(--text);
-  line-height: 1.58;
+  line-height: 1.60;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
-  /* Background: “vellum + cathedral shadow + engraving” */
   background:
     radial-gradient(1100px 760px at 18% 10%, var(--filigree-a), transparent 66%),
     radial-gradient(920px 620px at 88% 14%, var(--filigree-c), transparent 72%),
@@ -115,7 +108,6 @@ body{
   position: relative;
 }
 
-/* Subtle “engraving paper grain” (no images) */
 body::before{
   content:"";
   position: fixed;
@@ -134,7 +126,6 @@ body::before{
   filter: contrast(1.05);
 }
 
-/* A faint “letterpress” vignette */
 body::after{
   content:"";
   position: fixed;
@@ -145,7 +136,7 @@ body::after{
   opacity: .55;
 }
 
-/* Links: ink + underline like print */
+/* Links */
 a{
   color: color-mix(in srgb, var(--accent) 76%, white 24%);
   text-decoration-thickness: 1px;
@@ -156,7 +147,6 @@ a:hover{
   text-decoration-color: color-mix(in srgb, var(--accent) 52%, transparent);
 }
 
-/* Code stays modern */
 code{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
   font-size: .95em;
@@ -183,11 +173,10 @@ p{ margin:0 0 12px 0; }
 .section{ padding: 84px 0; }
 .section.tight{ padding: 42px 0; }
 
-/* Section alt: “plaque” with fine rules like a book */
 .section.alt{
   background:
     linear-gradient(180deg,
-      color-mix(in srgb, var(--glass-0) 86%, transparent),
+      color-mix(in srgb, var(--glass-0) 88%, transparent),
       transparent 70%);
   border-top: 1px solid color-mix(in srgb, var(--stroke-2) 78%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--stroke-2) 78%, transparent);
@@ -230,16 +219,16 @@ p{ margin:0 0 12px 0; }
 }
 .skip-link:focus{ left:10px; z-index:30; }
 
-/* Header: “apothecary case” strip */
+/* Header */
 .site-header{
   position: sticky;
   top:0;
   z-index:20;
-  backdrop-filter: blur(16px) saturate(135%);
-  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
   background:
     linear-gradient(180deg,
-      color-mix(in srgb, var(--glass-0) 78%, transparent),
+      color-mix(in srgb, var(--glass-0) 80%, transparent),
       color-mix(in srgb, var(--glass-0) 62%, transparent));
   border-bottom: 1px solid color-mix(in srgb, var(--stroke-2) 86%, transparent);
 }
@@ -259,18 +248,23 @@ p{ margin:0 0 12px 0; }
   padding: 14px 0;
 }
 
+.header-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
 .brand{
   display:flex; align-items:center; gap:10px;
   color: var(--text);
   text-decoration:none;
 }
-
-/* Brand mark: “stained glass lozenge” */
 .brand-mark{
   width: 28px; height: 28px;
   border-radius: 10px;
   background:
-    radial-gradient(12px 12px at 30% 28%, rgba(255,255,255,.18), transparent 62%),
+    radial-gradient(12px 12px at 30% 28%, rgba(255,255,255,.20), transparent 62%),
     linear-gradient(135deg,
       color-mix(in srgb, var(--forest-deep) 88%, black),
       color-mix(in srgb, var(--accent) 60%, black));
@@ -278,11 +272,11 @@ p{ margin:0 0 12px 0; }
   border: 1px solid color-mix(in srgb, var(--stroke) 86%, transparent);
 }
 .brand-text{
-  font-weight: 820;
+  font-weight: 840;
   letter-spacing: -0.015em;
 }
 
-/* Nav: “chapel tabs” */
+/* Nav */
 .nav{ display:flex; gap:6px; flex-wrap:wrap; }
 .nav a{
   color: var(--muted);
@@ -290,16 +284,16 @@ p{ margin:0 0 12px 0; }
   border-radius: 999px;
   transition: background-color .16s ease, color .16s ease, transform .16s ease;
   position: relative;
+  text-decoration:none;
 }
 .nav a:hover{
-  background: color-mix(in srgb, var(--glass-1) 60%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 62%, transparent);
   color: var(--text);
-  text-decoration:none;
   transform: translateY(-1px);
 }
 .nav a[aria-current="page"]{
   color: var(--text);
-  background: color-mix(in srgb, var(--glass-1) 70%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 72%, transparent);
   border: 1px solid color-mix(in srgb, var(--stroke-2) 88%, transparent);
 }
 .nav a[aria-current="page"]::after{
@@ -307,11 +301,11 @@ p{ margin:0 0 12px 0; }
   position:absolute;
   left: 16px; right: 16px; bottom: 6px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 55%, transparent), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 58%, transparent), transparent);
   opacity: .9;
 }
 
-/* Buttons: “signet” */
+/* Buttons */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -319,7 +313,7 @@ p{ margin:0 0 12px 0; }
   gap:8px;
   padding: 11px 14px;
   border-radius: 999px;
-  font-weight: 760;
+  font-weight: 780;
   letter-spacing:-0.01em;
   border: 1px solid color-mix(in srgb, var(--stroke-2) 92%, transparent);
   color: var(--text);
@@ -328,54 +322,51 @@ p{ margin:0 0 12px 0; }
   user-select:none;
   transition: transform .16s ease, filter .16s ease, box-shadow .16s ease, background-color .16s ease;
 }
-.btn:hover{ transform: translateY(-1px); text-decoration:none; }
+.btn:hover{ transform: translateY(-1px); }
 .btn:active{ transform: translateY(0px); }
 
 .btn-ghost{
-  background: color-mix(in srgb, var(--glass-0) 90%, transparent);
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  background: color-mix(in srgb, var(--glass-0) 92%, transparent);
+  backdrop-filter: blur(12px) saturate(135%);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
 }
 .btn-ghost:hover{
-  background: color-mix(in srgb, var(--glass-1) 70%, transparent);
+  background: color-mix(in srgb, var(--glass-1) 72%, transparent);
   box-shadow: var(--shadow-1);
 }
 
-/* Solid CTA: ember wax seal */
 .btn-solid{
   color: rgba(255,255,255,.94);
-  border: 1px solid color-mix(in srgb, var(--hot) 36%, var(--stroke));
+  border: 1px solid color-mix(in srgb, var(--hot) 40%, var(--stroke));
   background:
-    radial-gradient(120px 60px at 30% 20%, rgba(255,255,255,.10), transparent 70%),
+    radial-gradient(120px 60px at 30% 20%, rgba(255,255,255,.11), transparent 70%),
     linear-gradient(180deg,
-      color-mix(in srgb, var(--hot) 44%, #121 56%),
-      color-mix(in srgb, var(--hot) 32%, #0A0E10 68%));
+      color-mix(in srgb, var(--hot) 48%, #121 52%),
+      color-mix(in srgb, var(--hot) 34%, #0A0E10 66%));
   box-shadow: var(--shadow-2);
 }
 .btn-solid:hover{
-  filter: brightness(1.04);
+  filter: brightness(1.05);
   box-shadow: var(--shadow-3);
 }
 
-/* Cards: “gothic plaque” (pointed arch corners, filigree top rule) */
+/* Cards */
 .card{
   position: relative;
   padding: 20px;
   border-radius: var(--r3);
   border: 1px solid color-mix(in srgb, var(--stroke-2) 92%, transparent);
   background:
-    radial-gradient(900px 320px at 15% 0%, rgba(255,255,255,.07), transparent 62%),
+    radial-gradient(900px 320px at 15% 0%, rgba(255,255,255,.075), transparent 62%),
     linear-gradient(180deg,
       color-mix(in srgb, var(--glass-0) 92%, transparent),
       color-mix(in srgb, var(--glass-0) 62%, transparent));
   box-shadow: var(--shadow-2);
   overflow:hidden;
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(145%);
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-
-/* “Engraved” inner frame */
 .card::before{
   content:"";
   position:absolute;
@@ -385,8 +376,6 @@ p{ margin:0 0 12px 0; }
   opacity: .55;
   pointer-events:none;
 }
-
-/* Filigree top rule */
 .card::after{
   content:"";
   position:absolute;
@@ -395,21 +384,20 @@ p{ margin:0 0 12px 0; }
   background:
     linear-gradient(90deg,
       transparent,
-      color-mix(in srgb, var(--accent) 22%, var(--inkline)),
+      color-mix(in srgb, var(--accent) 24%, var(--inkline)),
       transparent);
   opacity: .85;
   pointer-events:none;
 }
-
 .card:hover{
   transform: translateY(-3px);
   box-shadow: var(--shadow-3);
   border-color: color-mix(in srgb, var(--accent) 18%, var(--stroke-2));
 }
 
-.link-card{ display:block; }
+.link-card{ display:block; text-decoration:none; }
 
-/* Hero */
+/* HERO */
 .hero{ padding: 96px 0 44px; }
 .hero-grid{
   display:grid;
@@ -426,7 +414,7 @@ p{ margin:0 0 12px 0; }
   margin:0 0 12px;
   color: var(--muted);
   font-size: .90rem;
-  letter-spacing: .16em; /* more “print” */
+  letter-spacing: .16em;
   text-transform: uppercase;
   position: relative;
 }
@@ -458,7 +446,22 @@ p{ margin:0 0 12px 0; }
 }
 @media (max-width: 900px){ .two-col{ grid-template-columns: 1fr; } }
 
-/* Pills: “typesetter slugs” */
+/* Fix: project cards keep buttons aligned at bottom (works with your JS markup) */
+.cards > article.card{
+  display:flex;
+  flex-direction: column;
+}
+.cards > article.card > .pill-row{ margin-top: auto; }
+.cards > article.card > div:last-child{ margin-top: 12px; }
+.cards > article.card > div:last-child{ margin-top: auto; } /* final push: action row sits at bottom */
+
+/* Contact grid */
+.contact-cards{ grid-template-columns: repeat(12, 1fr); }
+.contact-cards > *{ grid-column: span 4; }
+@media (max-width: 900px){ .contact-cards > *{ grid-column: span 6; } }
+@media (max-width: 620px){ .contact-cards > *{ grid-column: span 12; } }
+
+/* Pills */
 .pill-row{
   display:flex; gap:10px; flex-wrap:wrap;
   list-style:none; padding:0; margin:0;
@@ -485,7 +488,7 @@ p{ margin:0 0 12px 0; }
 /* Lists + bits */
 .bullets{ margin:12px 0 0; padding-left:18px; color: var(--muted); }
 .kicker{ margin:0; color: var(--muted); font-size:.9rem; }
-.big{ margin: 6px 0 0; font-weight: 780; font-size: 1.04rem; }
+.big{ margin: 6px 0 0; font-weight: 800; font-size: 1.04rem; }
 
 /* Profile */
 .profile{ display:flex; gap:12px; align-items:center; margin-bottom:12px; }
@@ -497,10 +500,10 @@ p{ margin:0 0 12px 0; }
   box-shadow: var(--shadow-1);
   filter: contrast(1.03) saturate(1.01);
 }
-.profile-name{ margin:0; font-weight: 860; }
+.profile-name{ margin:0; font-weight: 880; }
 .profile-title, .profile-loc{ margin:0; color: var(--muted); font-size:.95rem; }
 
-/* Stats: fine ruled rows */
+/* Stats */
 .stats{ display:grid; gap:10px; }
 .stat{
   display:flex; justify-content:space-between; gap:12px;
@@ -532,11 +535,11 @@ p{ margin:0 0 12px 0; }
   color: var(--text);
   min-width: 240px;
   outline: none;
-  backdrop-filter: blur(10px) saturate(130%);
-  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  backdrop-filter: blur(10px) saturate(135%);
+  -webkit-backdrop-filter: blur(10px) saturate(135%);
 }
 .input:focus{
-  border-color: color-mix(in srgb, var(--accent) 44%, var(--stroke-2));
+  border-color: color-mix(in srgb, var(--accent) 46%, var(--stroke-2));
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
@@ -589,7 +592,7 @@ p{ margin:0 0 12px 0; }
   display:inline-block;
   min-width: 64px;
   color: var(--text);
-  font-weight: 860;
+  font-weight: 880;
 }
 
 /* Footer */
@@ -597,8 +600,8 @@ p{ margin:0 0 12px 0; }
   border-top: 1px solid color-mix(in srgb, var(--stroke-2) 76%, transparent);
   padding: 26px 0;
   background: color-mix(in srgb, var(--glass-0) 70%, transparent);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
   position: relative;
 }
 .site-footer::before{
