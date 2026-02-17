@@ -4,6 +4,19 @@
    - Fix: project card buttons align to bottom (no HTML changes)
 */
 
+.header-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.header-actions .btn-solid{
+  min-width: 132px;          /* tweak until both labels fit nicely */
+  justify-content: center;
+  white-space: nowrap;
+}
+
 html{
   overflow-y: scroll;          /* fallback */
   scrollbar-gutter: stable;    /* modern */
