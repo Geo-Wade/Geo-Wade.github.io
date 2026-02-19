@@ -2,7 +2,6 @@
   const featuredEl = document.getElementById("featured-projects");
   const gridEl = document.getElementById("projects-grid");
   const filterEl = document.getElementById("project-filter");
-
   let data;
   try {
     const res = await fetch("../data/projects.json", { cache: "no-store" });
@@ -14,7 +13,6 @@
     if (gridEl) gridEl.innerHTML = msg;
     return;
   }
-
   const cardHtml = (p) => `
     <article class="card">
       <img class="project-media" src="${p.heroImage}" alt="${p.title} screenshot" loading="lazy" />
@@ -29,22 +27,18 @@
       </div>
     </article>
   `;
-
   const projects = data.projects || [];
-
   if (featuredEl) {
     const featuredIds = new Set(data.featured || []);
     const featured = projects.filter(p => featuredIds.has(p.id)).slice(0, 6);
     featuredEl.innerHTML = featured.map(cardHtml).join("") || `<div class="card"><p class="muted">No featured projects yet.</p></div>`;
   }
-
   const renderAll = (query = "") => {
     if (!gridEl) return;
     const q = query.trim().toLowerCase();
     const filtered = !q ? projects : projects.filter(p => (p.tags || []).some(t => String(t).toLowerCase().includes(q)) || p.title.toLowerCase().includes(q));
     gridEl.innerHTML = filtered.map(cardHtml).join("") || `<div class="card"><p class="muted">No projects match that filter.</p></div>`;
   };
-
   if (gridEl) renderAll();
   if (filterEl) filterEl.addEventListener("input", (e) => renderAll(e.target.value));
 })();
