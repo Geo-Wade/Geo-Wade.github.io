@@ -1,22 +1,28 @@
+/* /css/code.css — glass code blocks */
 .code{
-  margin: 0;
-  padding: 14px;
-  border-radius: 14px;
-  border: 1px solid var(--border, var(--stroke));
-  background: color-mix(in srgb, var(--card, var(--glass-1)) 74%, transparent);
-  overflow: auto;
-  line-height: 1.55;
-  font-size: 0.95rem;
+  margin:0;
+  padding:18px;
+  border-radius:var(--r3);
+  border:1px solid var(--stroke-2);
+  background:color-mix(in srgb, var(--glass-1) 60%, transparent);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  box-shadow:var(--shadow-1);
+  overflow:auto;
+  line-height:1.6;
+  font-size:.88rem;
+  position:relative;
 }
-
-/* Make Prism feel “in-world” instead of pasted-on */
-pre.code{
-  backdrop-filter: blur(12px) saturate(135%);
-  -webkit-backdrop-filter: blur(12px) saturate(135%);
-  box-shadow: var(--shadow-1);
+/* top tracery line */
+.code::after{
+  content:"";
+  position:absolute;
+  left:18px; right:18px; top:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 20%, var(--inkline)), transparent);
+  pointer-events:none;
 }
-
 pre.code code{
   display:block;
-  white-space: pre;
+  white-space:pre;
 }
