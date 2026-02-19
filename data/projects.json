@@ -2,7 +2,7 @@
   "featured": ["fuel-management"],
   "projects": [
     {
-    "id": "fuel-management",
+      "id": "fuel-management",
       "title": "FuelManagement",
       "summary": "A CLI application to simulate fueling operations",
       "tags": ["Java", "SpringBoot", "DataJPA"],
@@ -11,16 +11,16 @@
       "heroImage": "/projects/fuel-management/assets/hero.png"
     },
     {
-    "id": "intcombasmmo",
+      "id": "intcombasmmo",
       "title": "IntComBasMMO",
-      "summary": "Resource Gathering and Crafting Mechianics Built in Unreal Engine 4",
+      "summary": "Resource Gathering and Crafting Mechanics Built in Unreal Engine 4",
       "tags": ["UE4", "C++", "Network"],
       "href": "/projects/intcombasmmo/",
       "repo": "https://github.com/Geo-Wade/Interwoven-Content-Based-MMO",
       "heroImage": "/projects/intcombasmmo/assets/hero.png"
     },
     {
-    "id": "mega-jam",
+      "id": "mega-jam",
       "title": "Epic Mega Jam Submission",
       "summary": "Game created for entry into the Epic Mega Jam",
       "tags": ["UE4", "C++", "Gameplay"],
