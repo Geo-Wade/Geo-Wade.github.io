@@ -1,3 +1,679 @@
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>About — Geoff Wade</title> <meta name="description" content="About Geoff Wade — background
+
+pasted
+
+
+/* /css/site.css — “Cathedral Glass” (gothic geometry + modern liquid glass) - Keeps your existing class names + JS hooks - Stable header (no shift when CTA label changes) - Project cards: action row pinned to bottom (no HTML changes) */ /* Prevent layout shift when scrollbars appear
+
+pasted
+
+about/index.html: 
+
+css/code.css: 
+
+.code{
+  margin: 0;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border, var(--stroke));
+  background: color-mix(in srgb, var(--card, var(--glass-1)) 74%, transparent);
+  overflow: auto;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+/* Make Prism feel “in-world” instead of pasted-on */
+pre.code{
+  backdrop-filter: blur(12px) saturate(135%);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  box-shadow: var(--shadow-1);
+}
+pre.code code{
+  display:block;
+  white-space: pre;
+}
+
+css/site.css: 
+
+data/projects.json:
+
+Show more
+1:15 PM
+Looking at your about page and CSS, I can see the site structure. What would you like me to help with? It seems like you may have started to share something but the message got cut off — you listed several files but didn't include a specific request.
+
+What
+
+Claude's response was interrupted
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>About — Geoff Wade</title> <meta name="description" content="About Geoff Wade — background
+
+pasted
+
+
+/* /css/site.css — “Cathedral Glass” (gothic geometry + modern liquid glass) - Keeps your existing class names + JS hooks - Stable header (no shift when CTA label changes) - Project cards: action row pinned to bottom (no HTML changes) */ /* Prevent layout shift when scrollbars appear
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>Fuel Management — Geoff Wade</title> <meta name="description" content="Fuel Management — J
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>IntComBasMMO — Geoff Wade</title> <meta name="description" content="IntComBasMMO — Unreal
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>Mega Jam — Geoff Wade</title> <meta name="description" content="Epic Mega Jam submission —
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>Geoff Wade — Portfolio</title> <meta name="description" content="Geoff Wade — portfolio: p
+
+pasted
+
+about/index.html: 
+
+
+css/code.css: 
+
+.code{
+  margin: 0;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border, var(--stroke));
+  background: color-mix(in srgb, var(--card, var(--glass-1)) 74%, transparent);
+  overflow: auto;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+/* Make Prism feel “in-world” instead of pasted-on */
+pre.code{
+  backdrop-filter: blur(12px) saturate(135%);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  box-shadow: var(--shadow-1);
+}
+pre.code code{
+  display:block;
+  white-space: pre;
+}
+
+css/site.css: 
+
+data/projects.json:
+
+{
+  "featured": ["fuel-management"],
+  "projects": [
+    {
+    "id": "fuel-management",
+      "title": "FuelManagement",
+      "summary": "A CLI application to simulate fueling operations",
+      "tags": ["Java", "SpringBoot", "DataJPA"],
+      "href": "/projects/fuel-management/",
+      "repo": "https://github.com/Geo-Wade/FuelManagementApp2",
+      "heroImage": "/projects/fuel-management/assets/hero.png"
+    },
+    {
+    "id": "intcombasmmo",
+      "title": "IntComBasMMO",
+      "summary": "Resource Gathering and Crafting Mechianics Built in Unreal Engine 4",
+      "tags": ["UE4", "C++", "Network"],
+      "href": "/projects/intcombasmmo/",
+      "repo": "https://github.com/Geo-Wade/Interwoven-Content-Based-MMO",
+      "heroImage": "/projects/intcombasmmo/assets/hero.png"
+    },
+    {
+    "id": "mega-jam",
+      "title": "Epic Mega Jam Submission",
+      "summary": "Game created for entry into the Epic Mega Jam",
+      "tags": ["UE4", "C++", "Gameplay"],
+      "href": "/projects/mega-jam/",
+      "repo": "https://github.com/Geo-Wade/MegaJamEntry2020",
+      "heroImage": "/projects/mega-jam/assets/hero.png"
+    }
+  ]
+}
+
+js/carousel.js:
+
+(() => {
+  const carousels = document.querySelectorAll("[data-carousel]");
+  carousels.forEach((root) => {
+    const track = root.querySelector("[data-carousel-track]");
+    const prev = root.querySelector("[data-carousel-prev]");
+    const next = root.querySelector("[data-carousel-next]");
+    if (!track || !prev || !next) return;
+    let index = 0;
+    const slides = Array.from(track.children);
+    const go = (i) => {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(${-index * 100}%)`;
+      track.style.transition = "transform 220ms ease";
+    };
+    prev.addEventListener("click", () => go(index - 1));
+    next.addEventListener("click", () => go(index + 1));
+  });
+})();
+
+js/projects.js:
+
+(async () => {
+  const featuredEl = document.getElementById("featured-projects");
+  const gridEl = document.getElementById("projects-grid");
+  const filterEl = document.getElementById("project-filter");
+  let data;
+  try {
+    const res = await fetch("../data/projects.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    data = await res.json();
+  } catch (e) {
+    const msg = `<div class="card"><p class="muted">Could not load data/projects.json (${String(e)})</p></div>`;
+    if (featuredEl) featuredEl.innerHTML = msg;
+    if (gridEl) gridEl.innerHTML = msg;
+    return;
+  }
+  const cardHtml = (p) => `
+    <article class="card">
+      <img class="project-media" src="${p.heroImage}" alt="${p.title} screenshot" loading="lazy" />
+      <h3 style="margin:12px 0 6px 0;">${p.title}</h3>
+      <p class="muted" style="margin:0 0 12px 0;">${p.summary}</p>
+      <ul class="pill-row" style="margin-bottom:12px;">
+        ${(p.tags || []).slice(0,4).map(t => `<li class="pill">${t}</li>`).join("")}
+      </ul>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn btn-solid" href="${p.href}">Details</a>
+        ${p.repo ? `<a class="btn btn-ghost" href="${p.repo}" target="_blank" rel="noreferrer">Repo</a>` : ""}
+      </div>
+    </article>
+  `;
+  const projects = data.projects || [];
+  if (featuredEl) {
+    const featuredIds = new Set(data.featured || []);
+    const featured = projects.filter(p => featuredIds.has(p.id)).slice(0, 6);
+    featuredEl.innerHTML = featured.map(cardHtml).join("") || `<div class="card"><p class="muted">No featured projects yet.</p></div>`;
+  }
+  const renderAll = (query = "") => {
+    if (!gridEl) return;
+    const q = query.trim().toLowerCase();
+    const filtered = !q ? projects : projects.filter(p => (p.tags || []).some(t => String(t).toLowerCase().includes(q)) || p.title.toLowerCase().includes(q));
+    gridEl.innerHTML = filtered.map(cardHtml).join("") || `<div class="card"><p class="muted">No projects match that filter.</p></div>`;
+  };
+  if (gridEl) renderAll();
+  if (filterEl) filterEl.addEventListener("input", (e) => renderAll(e.target.value));
+})();
+
+js/site.js: 
+
+(() => {
+  const y = document.getElementById("year");
+  if (y) y.textContent = String(new Date().getFullYear());
+})();
+
+projects/index.html: 
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Projects — Geoff Wade</title>
+  <meta name="description" content="Projects by Geoff Wade — Java, C++, Unreal Engine, and more." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">◆</span><span class="brand-text">Geoff Wade</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a aria-current="page" href="/projects/">Projects</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="https://github.com/Geo-Wade" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn-solid" href="/#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="section">
+    <div class="container section-head">
+      <div>
+        <h1>Projects</h1>
+        <p class="muted">Selected builds and technical write-ups.</p>
+      </div>
+      <div class="section-actions">
+        <label class="field">
+          <span class="muted small">Filter (title or tag)</span>
+          <input id="project-filter" class="input" type="text" placeholder="e.g., Java, Spring, UE4" autocomplete="off" />
+        </label>
+      </div>
+    </div>
+    <div class="container">
+      <div id="projects-grid" class="grid cards" aria-live="polite">
+        <div class="skeleton card" aria-hidden="true"></div>
+        <div class="skeleton card" aria-hidden="true"></div>
+        <div class="skeleton card" aria-hidden="true"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Geoff Wade</p>
+      <nav class="nav" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/projects.js" defer></script>
+</body>
+</html>
+
+projects/fuel-management/index.html:
+
+projects/intcombasmmo/index.html:
+
+projects/mega-jam/index.html:
+
+404.html:
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>404 — Not Found</title>
+  <meta name="description" content="404 — page not found." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="section">
+    <div class="container">
+      <div class="card">
+        <h1>Page not found</h1>
+        <p class="muted">
+          That route doesn’t exist. If you renamed a project folder, update its link in <code>/data/projects.json</code>.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn btn-solid" href="/">Go home</a>
+          <a class="btn btn-ghost" href="/projects/">Projects</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>
+
+index.html:
+
+
+
+
+Can you rewrite these? I want a Liquid glass style, professional Portfolio Website that is mobile friendly with gothic influences. It NEEDS to work with all of my assets.
+Editing this message will create a new conversation branch. You can switch between branches using the arrow navigation buttons.
+Let me start by reviewing the frontend design skill for best practices, then examine your uploaded files.
+
+
+Read frontend design skill
+Read frontend design skill
+Claude's response was interrupted
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>About — Geoff Wade</title> <meta name="description" content="About Geoff Wade — background
+
+pasted
+
+
+/* /css/site.css — “Cathedral Glass” (gothic geometry + modern liquid glass) - Keeps your existing class names + JS hooks - Stable header (no shift when CTA label changes) - Project cards: action row pinned to bottom (no HTML changes) */ /* Prevent layout shift when scrollbars appear
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>Fuel Management — Geoff Wade</title> <meta name="description" content="Fuel Management — J
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>IntComBasMMO — Geoff Wade</title> <meta name="description" content="IntComBasMMO — Unreal
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>Mega Jam — Geoff Wade</title> <meta name="description" content="Epic Mega Jam submission —
+
+pasted
+
+
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <meta name="color-scheme" content="light dark" /> <title>Geoff Wade — Portfolio</title> <meta name="description" content="Geoff Wade — portfolio: p
+
+pasted
+
+about/index.html: 
+
+css/code.css: 
+
+.code{
+  margin: 0;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border, var(--stroke));
+  background: color-mix(in srgb, var(--card, var(--glass-1)) 74%, transparent);
+  overflow: auto;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+/* Make Prism feel “in-world” instead of pasted-on */
+pre.code{
+  backdrop-filter: blur(12px) saturate(135%);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  box-shadow: var(--shadow-1);
+}
+pre.code code{
+  display:block;
+  white-space: pre;
+}
+
+css/site.css: 
+
+data/projects.json:
+
+{
+  "featured": ["fuel-management"],
+  "projects": [
+    {
+    "id": "fuel-management",
+      "title": "FuelManagement",
+      "summary": "A CLI application to simulate fueling operations",
+      "tags": ["Java", "SpringBoot", "DataJPA"],
+      "href": "/projects/fuel-management/",
+      "repo": "https://github.com/Geo-Wade/FuelManagementApp2",
+      "heroImage": "/projects/fuel-management/assets/hero.png"
+    },
+    {
+    "id": "intcombasmmo",
+      "title": "IntComBasMMO",
+      "summary": "Resource Gathering and Crafting Mechianics Built in Unreal Engine 4",
+      "tags": ["UE4", "C++", "Network"],
+      "href": "/projects/intcombasmmo/",
+      "repo": "https://github.com/Geo-Wade/Interwoven-Content-Based-MMO",
+      "heroImage": "/projects/intcombasmmo/assets/hero.png"
+    },
+    {
+    "id": "mega-jam",
+      "title": "Epic Mega Jam Submission",
+      "summary": "Game created for entry into the Epic Mega Jam",
+      "tags": ["UE4", "C++", "Gameplay"],
+      "href": "/projects/mega-jam/",
+      "repo": "https://github.com/Geo-Wade/MegaJamEntry2020",
+      "heroImage": "/projects/mega-jam/assets/hero.png"
+    }
+  ]
+}
+
+js/carousel.js:
+
+(() => {
+  const carousels = document.querySelectorAll("[data-carousel]");
+  carousels.forEach((root) => {
+    const track = root.querySelector("[data-carousel-track]");
+    const prev = root.querySelector("[data-carousel-prev]");
+    const next = root.querySelector("[data-carousel-next]");
+    if (!track || !prev || !next) return;
+    let index = 0;
+    const slides = Array.from(track.children);
+    const go = (i) => {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = translateX(${-index * 100}%);
+      track.style.transition = "transform 220ms ease";
+    };
+    prev.addEventListener("click", () => go(index - 1));
+    next.addEventListener("click", () => go(index + 1));
+  });
+})();
+
+js/projects.js:
+
+(async () => {
+  const featuredEl = document.getElementById("featured-projects");
+  const gridEl = document.getElementById("projects-grid");
+  const filterEl = document.getElementById("project-filter");
+  let data;
+  try {
+    const res = await fetch("../data/projects.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(HTTP ${res.status});
+    data = await res.json();
+  } catch (e) {
+    const msg = <div class="card"><p class="muted">Could not load data/projects.json (${String(e)})</p></div>;
+    if (featuredEl) featuredEl.innerHTML = msg;
+    if (gridEl) gridEl.innerHTML = msg;
+    return;
+  }
+  const cardHtml = (p) => 
+    <article class="card">
+      <img class="project-media" src="${p.heroImage}" alt="${p.title} screenshot" loading="lazy" />
+      <h3 style="margin:12px 0 6px 0;">${p.title}</h3>
+      <p class="muted" style="margin:0 0 12px 0;">${p.summary}</p>
+      <ul class="pill-row" style="margin-bottom:12px;">
+        ${(p.tags || []).slice(0,4).map(t => <li class="pill">${t}</li>).join("")}
+      </ul>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn btn-solid" href="${p.href}">Details</a>
+        ${p.repo ? <a class="btn btn-ghost" href="${p.repo}" target="_blank" rel="noreferrer">Repo</a> : ""}
+      </div>
+    </article>
+  ;
+  const projects = data.projects || [];
+  if (featuredEl) {
+    const featuredIds = new Set(data.featured || []);
+    const featured = projects.filter(p => featuredIds.has(p.id)).slice(0, 6);
+    featuredEl.innerHTML = featured.map(cardHtml).join("") || <div class="card"><p class="muted">No featured projects yet.</p></div>;
+  }
+  const renderAll = (query = "") => {
+    if (!gridEl) return;
+    const q = query.trim().toLowerCase();
+    const filtered = !q ? projects : projects.filter(p => (p.tags || []).some(t => String(t).toLowerCase().includes(q)) || p.title.toLowerCase().includes(q));
+    gridEl.innerHTML = filtered.map(cardHtml).join("") || <div class="card"><p class="muted">No projects match that filter.</p></div>;
+  };
+  if (gridEl) renderAll();
+  if (filterEl) filterEl.addEventListener("input", (e) => renderAll(e.target.value));
+})();
+
+js/site.js: 
+
+(() => {
+  const y = document.getElementById("year");
+  if (y) y.textContent = String(new Date().getFullYear());
+})();
+
+projects/index.html: 
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Projects — Geoff Wade</title>
+  <meta name="description" content="Projects by Geoff Wade — Java, C++, Unreal Engine, and more." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">◆</span><span class="brand-text">Geoff Wade</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a aria-current="page" href="/projects/">Projects</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="https://github.com/Geo-Wade" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn-solid" href="/#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="section">
+    <div class="container section-head">
+      <div>
+        <h1>Projects</h1>
+        <p class="muted">Selected builds and technical write-ups.</p>
+      </div>
+      <div class="section-actions">
+        <label class="field">
+          <span class="muted small">Filter (title or tag)</span>
+          <input id="project-filter" class="input" type="text" placeholder="e.g., Java, Spring, UE4" autocomplete="off" />
+        </label>
+      </div>
+    </div>
+    <div class="container">
+      <div id="projects-grid" class="grid cards" aria-live="polite">
+        <div class="skeleton card" aria-hidden="true"></div>
+        <div class="skeleton card" aria-hidden="true"></div>
+        <div class="skeleton card" aria-hidden="true"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Geoff Wade</p>
+      <nav class="nav" aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/projects.js" defer></script>
+</body>
+</html>
+
+projects/fuel-management/index.html:
+
+projects/intcombasmmo/index.html:
+
+projects/mega-jam/index.html:
+
+404.html:
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>404 — Not Found</title>
+  <meta name="description" content="404 — page not found." />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="section">
+    <div class="container">
+      <div class="card">
+        <h1>Page not found</h1>
+        <p class="muted">
+          That route doesn’t exist. If you renamed a project folder, update its link in <code>/data/projects.json</code>.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn btn-solid" href="/">Go home</a>
+          <a class="btn btn-ghost" href="/projects/">Projects</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>
+
+index.html:
+
+Can you rewrite these? I want a Liquid glass style, professional Portfolio Website that is mobile friendly with gothic influences. It NEEDS to work with all of my assets.
+
+Show more
+1:20 PM
+I have all the context I need. Let me build this out — a complete rewrite of your portfolio with liquid glass aesthetics, gothic influences, and full compatibility with your existing asset paths and JS hooks.
+
+Let me set up the file structure:
+
+
+Created 9 files, ran a command
+Created 9 files, ran a command
+Now the JS files and data — these stay functionally identical, just copied over:
+
+
+Created 4 files
+Created 4 files
+Now let me copy everything to outputs:
+
+
+Ran 2 commands, read a file
+Ran 2 commands, read a file
+Here's the complete rewrite — 13 files, drop-in replacement for your existing site. Key design decisions:
+
+Typography: Cinzel (gothic serif) for headings and brand, Outfit (clean geometric) for body. The contrast gives it that cathedral-meets-modern feel.
+
+Liquid Glass: Cards use layered backdrop-filter: blur(20px) saturate(150%) with translucent gradients, inner bevel borders, and ornamental top tracery lines that echo gothic bar tracery.
+
+Gothic touches: Pointed diamond bullets (◆), vertical timeline with glowing accent nodes, "light shaft" background radials that mimic clerestory windows, double-line ornamental borders on alt sections, and Cinzel's inherent lancet-arch letterforms.
+
+What's preserved exactly: Every asset path (/assets/img/headshot.png, assets/hero.png, /assets/img/life/01.png, etc.), every JS hook (data-carousel, data-carousel-track, #featured-projects, #projects-grid, #project-filter, #year), every class name your JS touches, and all external links/repos. The JS files are byte-for-byte identical.
+
+Mobile: Nav wraps to full-width row below 720px with a subtle separator. Cards and grids collapse properly at 900px/620px/480px breakpoints.
+
+Site
+Code · CSS 
+Index
+Code · HTML 
+Index
+Code · HTML 
+Index
+Code · HTML 
+Index
+Code · HTML 
+Index
+Code · HTML 
+Index
+Code · HTML 
+Code
+Code · CSS 
+Site
+JS 
+Carousel
+JS 
+Projects
+JS 
+Projects
+Code · JSON 
+404
+Code · HTML 
+
+
+Want to be notified when Claude responds?
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Index · HTML
+Copy
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -207,7 +883,7 @@
         <ul class="bullets">
           <li>Crafting Station base class designed for Blueprint inheritance</li>
           <li>Material validation: check player inventory for required inputs before crafting</li>
-          <li>Shared “grant item” path so crafted items are delivered consistently</li>
+          <li>Shared "grant item" path so crafted items are delivered consistently</li>
         </ul>
       </section>
 
@@ -239,9 +915,9 @@
       <section class="section tight">
         <h2>What I learned</h2>
         <p class="muted">
-          Unreal’s framework and editor create a tight feedback loop: validate systems in-world while iterating on code and data.
+          Unreal's framework and editor create a tight feedback loop: validate systems in-world while iterating on code and data.
           This project strengthened my ability to design scalable, reusable gameplay systems using core OOP principles—base classes and clear
-          contracts—while keeping behavior data-driven through Blueprint variants. I also learned to build “safe” mechanics:
+          contracts—while keeping behavior data-driven through Blueprint variants. I also learned to build "safe" mechanics:
           validate inputs, enforce constraints, and cap retries for predictable behavior.
         </p>
       </section>
